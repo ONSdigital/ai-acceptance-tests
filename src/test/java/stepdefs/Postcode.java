@@ -47,6 +47,12 @@ public class Postcode {
         spec = given().spec(requestSpec);
     }
 
+    @Then("^The postcode results should not include any of these classification codes$")
+    public void thePostcodeResultsShouldNotIncludeAnyOfTheseClassificationCodes(DataTable classificationCodes) throws Throwable {
+        API api = new API();
+        boolean found = api.classificationCodeFound(classificationCodes, response);
+        assertThat(found, Matchers.equalTo(false));
+    }
  /*   @Given("^I setup GET for postcode$")
     public void i_setup_GET_for_postcode() throws Throwable {
         builder = new RequestSpecBuilder();
@@ -90,16 +96,25 @@ public class Postcode {
                 Matchers.<Object>equalTo("6473FF-6623JJ, The Building Name, A Training Centre, 56HH-7755OP And Another Street Descriptor, Locality Xyz, Town B, KL3 7GQ"));
     }
 
-    @Then("^the postcode results should contain these UPRNs$")
-    public void the_postcode_results_should_contain_these_uprns(DataTable table) {
+    @Then("^the postcode results should contain these UPRNs at positions$")
+    public void the_postcode_results_should_contain_these_uprns_at_positions(DataTable dataTable) {
         JsonPath jsonPath = response.getBody().jsonPath();
-        List<List<String>> raw = table.raw();
-        assertThat(jsonPath.get("response.addresses.uprn[0]"),
-                Matchers.<Object>equalTo(raw.get(1).get(1)));
-        assertThat(jsonPath.get("response.addresses.uprn[1]"),
-                Matchers.<Object>equalTo(raw.get(2).get(1)));
-        assertThat(jsonPath.get("response.addresses.uprn[2]"),
-                Matchers.<Object>equalTo(raw.get(3).get(1)));
+        List<Map<String, String>> uprns =  dataTable.asMaps(String.class, String.class);
+        for (int uprn = 0; uprn < uprns.size(); uprn++) {
+            // find numAddresses in results then assert that numAddresses >= uprn or will get null error
+            assertThat(NumAddresses(), Matchers.greaterThan(0));
+            assertThat(NumAddresses(), Matchers.greaterThan(uprn));
+            String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);
+            assertThat(jsonPath.get(response_address_uprn), Matchers.<Object>equalTo(uprns.get(uprn).get("uprn")));
+        }
+    }
+
+    public int NumAddresses()
+    {
+        int limit = Integer.parseInt(response.getBody().jsonPath().get("response.limit").toString());
+        int total = Integer.parseInt(response.getBody().jsonPath().get("response.total").toString());
+        int numAddresses = limit < total ? limit : total;
+        return numAddresses;
     }
 
     @Then("^the postcode results should contain all these UPRNs in any address$")

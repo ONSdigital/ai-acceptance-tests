@@ -85,6 +85,20 @@ Feature: Search by Address Features
       | code    | 200                              |
       | message | Ok                               |
 
+  Scenario: Historic Address
+    Given I setup GET for address
+    And I set parameters for address search
+      | param | value        |
+      | input | 28 SO2 7BR |
+      | limit | 200          |
+    |historic |true        |
+    When I perform GET for address
+    Then The first address should contain "SO2 7BR"
+    Then The results should include these UPRNs at positions
+      | index | uprn         |
+      | 1     | 64012390 |
+  # what postcode should be shown? - SO2 7BR or SO19 7BR?
+
 #  Scenario
 #    Then I should be able to see the first 10 addresses
 #      | field            | value          |

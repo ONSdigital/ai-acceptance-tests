@@ -14,8 +14,8 @@ Feature: Address Index features
       | 100060291782 |
       | 100060291783 |
       | 100060291784 |
-    # or should we check that the formatted address contains PO8 9YD
-    #Then the results should all have formattedAddress includes "PO8 9YD"
+#    # or should we check that the formatted address contains PO8 9YD
+#    #Then the results should all have formattedAddress includes "PO8 9YD"
     And Verify postcode response status
       | key     | value |
       | code    | 200   |
@@ -26,7 +26,7 @@ Feature: Address Index features
       | param  | value        |
       | limit  | 200          |
     When the user performs GET for postcode "po8 9yd"
-    Then the postcode results should contain these UPRNs
+    Then the postcode results should contain these UPRNs at positions
       | index | uprn         |
       | 1     | 100060291782 |
       | 2     | 100060291783 |
@@ -43,7 +43,7 @@ Feature: Address Index features
       | param  | value        |
       | limit  | 200          |
     When the user performs GET for postcode "PO89YD"
-    Then the postcode results should contain these UPRNs
+    Then the postcode results should contain these UPRNs at positions
       | index | uprn         |
       | 1     | 100060291782 |
       | 2     | 100060291783 |
@@ -89,7 +89,7 @@ Feature: Address Index features
       | param                | value       |
       | classificationfilter | residential |
     When the user performs GET for postcode "GU32 3HJ"
-    Then The results should not include any of these classification codes
+    Then The postcode results should not include any of these classification codes
       | RC   |
       | RC01 |
       | PS   |
@@ -103,7 +103,7 @@ Feature: Address Index features
       | param                | value       |
       | classificationfilter | residential |
     When the user performs GET for postcode "GU32 3HJ"
-    Then The results should not include any of these classification codes
+    Then The postcode results should not include any of these classification codes
       | RC   |
       | RC01 |
       | PS   |
@@ -117,7 +117,7 @@ Feature: Address Index features
       | param                | value       |
       | classificationfilter | residential |
     When the user performs GET for postcode "GU32 3HJ"
-    Then The workplace results should not include any of the defined classification codes
+    Then The postcode results should not include any of these classification codes
       | CC11  |
       | CR11 |
       | CT01   |
@@ -133,7 +133,7 @@ Feature: Address Index features
       | param                | value       |
       | classificationfilter | residential |
     When the user performs GET for postcode "GU32 3HJ"
-    Then The results should not include any of these classification codes
+    Then The postcode results should not include any of these classification codes
       | RC   |
       | RC01 |
       | PS   |
@@ -142,14 +142,35 @@ Feature: Address Index features
       | code    | 200   |
       | message | Ok    |
 
-    # need example
-  Scenario: 1.5 Historical
+    # AB12 9FH terminated in April 2019, need to find its new postcode, maybe AB12 3JG
+  Scenario: Historical - Postcode has been changed
     Given the user defines GET for postcode with these parameters
-      | param | value |
-    #  | limit | 3     |
-      | historical|true|
-    When the user performs GET for postcode "xxx"
-    Then the postcode results should not include UPRN "99999999"
+      | param      | value |
+      | limit      | 200   |
+      | historical | true  |
+    When the user performs GET for postcode "AB12 9FH"
+    Then the postcode results should contain these UPRNs at positions
+      | index | uprn     |
+      | 1     | 99999999 |
+    # what postcode should results show? - old SO2 7BR or SO19 7BR?
+
+  # need the postcode of a residence which no longer exists
+ Scenario: Historical - Address no longer exists
+   Given the user defines GET for postcode with these parameters
+     | param      | value |
+     | limit      | 200   |
+     | historical | true  |
+   When the user performs GET for postcode "xxx xxx"
+   Then the postcode results should not include UPRN "99999999"
+
+#   Scenario:
+#     Given the user defines GET for postcode with these parameters
+#       | param      | value |
+#       | limit      | 200   |
+#       | historical | true  |
+#     When the user performs GET for postcode "SO2 7BR"
+#     Then the postcode results should include these UPRNs
+#   "99999999"
 
     # need example
   Scenario: Auxiliary Index
@@ -181,4 +202,3 @@ Feature: Address Index features
     Then there should be 1 addresses
     Then the first 1 addresses should have countryCode "S"
     #Then the first 1 addresses should not have countryCode "E"
-
