@@ -47,6 +47,21 @@ public class API {
         return true;
     }
 
+//    public int numAddresses(ResponseOptions<Response> response)
+//    {
+//        int limit = Integer.parseInt(response.getBody().jsonPath().get("response.limit").toString());
+//        int total = Integer.parseInt(response.getBody().jsonPath().get("response.total").toString());
+//        int numAddresses = limit < total ? limit : total;
+//        return numAddresses;
+//    }
+    public int numAddresses(ResponseOptions<Response> response)
+    {
+        int limit = response.getBody().jsonPath().getInt("response.limit");
+        int total = response.getBody().jsonPath().getInt("response.total");
+        int numAddresses = limit < total ? limit : total;
+        return numAddresses;
+    }
+
     public boolean classificationCodeFound(DataTable classification_codes, ResponseOptions<Response> response) {
         List<String> codes =  classification_codes.asList(String.class);
 
@@ -88,14 +103,6 @@ public class API {
                 return true;
         }
         return false;
-    }
-
-    public int numAddresses(ResponseOptions<Response> response)
-    {
-        int limit = response.getBody().jsonPath().getInt("response.limit");
-        int total = response.getBody().jsonPath().getInt("response.total");
-        int numAddresses = limit < total ? limit : total;
-        return numAddresses;
     }
 
     public boolean countryCodeFoundInAllTopNAddresses(int numTopAddressesToSearch,String countryCode, ResponseOptions<Response> response)

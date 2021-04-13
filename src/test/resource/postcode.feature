@@ -161,7 +161,9 @@ Feature: Address Index features
      | limit      | 200   |
      | historical | true  |
    When the user performs GET for postcode "xxx xxx"
-   Then the postcode results should not include UPRN "99999999"
+   Then the postcode results should contain these UPRNs at positions
+     | index | uprn     |
+     | 1     | 99999999 |
 
 #   Scenario:
 #     Given the user defines GET for postcode with these parameters

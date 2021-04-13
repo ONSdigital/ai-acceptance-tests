@@ -75,7 +75,7 @@ Feature: Search by Address Features
       | input | Wagtail Road |
       | limit | 200          |
     When I perform GET for address
-    Then The results should include these UPRNs at positions
+    Then the address search results should contain these UPRNs at positions
       | index | uprn         |
       | 1     | 64012390 |
       | 2     | 64012391 |
@@ -85,18 +85,35 @@ Feature: Search by Address Features
       | code    | 200                              |
       | message | Ok                               |
 
-  Scenario: Historic Address
+  Scenario: Historical - Postcode has changed
     Given I setup GET for address
     And I set parameters for address search
-      | param | value        |
-      | input | 28 SO2 7BR |
-      | limit | 200          |
-    |historic |true        |
+      | param    | value    |
+      | input    | AB12 9FH |
+      | limit    | 200      |
+      | historic | true     |
+      # AB12 9FH terminated in April 2019, need to find its new postcode, maybe AB12 3JG
     When I perform GET for address
-    Then The first address should contain "SO2 7BR"
-    Then The results should include these UPRNs at positions
-      | index | uprn         |
+   # Then The first address should contain "AB12 9FH"
+    #will the results have the old postcode or new postcode?
+    Then the address search results should contain these UPRNs at positions
+      | index | uprn     |
       | 1     | 64012390 |
+
+  # need the postcode of a residence which no longer exists
+  Scenario: Historical - Address no longer exists
+    Given I setup GET for address
+    And I set parameters for address search
+      | param    | value    |
+      | input    | AB12 9FH |
+      | limit    | 200      |
+      | historic | true     |
+      # AB12 9FH terminated in April 2019, need to find its new postcode, maybe AB12 3JG
+    When I perform GET for address
+    Then the address search results should contain these UPRNs at positions
+      | 1     | 64012390 |
+
+  ##################
   # what postcode should be shown? - SO2 7BR or SO19 7BR?
 
 #  Scenario

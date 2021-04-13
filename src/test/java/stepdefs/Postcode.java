@@ -99,22 +99,15 @@ public class Postcode {
     @Then("^the postcode results should contain these UPRNs at positions$")
     public void the_postcode_results_should_contain_these_uprns_at_positions(DataTable dataTable) {
         JsonPath jsonPath = response.getBody().jsonPath();
-        List<Map<String, String>> uprns =  dataTable.asMaps(String.class, String.class);
+        List<Map<String, String>> uprns = dataTable.asMaps(String.class, String.class);
         for (int uprn = 0; uprn < uprns.size(); uprn++) {
             // find numAddresses in results then assert that numAddresses >= uprn or will get null error
-            assertThat(NumAddresses(), Matchers.greaterThan(0));
-            assertThat(NumAddresses(), Matchers.greaterThan(uprn));
+            API api = new API();
+            assertThat(api.numAddresses(response), Matchers.greaterThan(0));
+            assertThat(api.numAddresses(response), Matchers.greaterThan(uprn));
             String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);
             assertThat(jsonPath.get(response_address_uprn), Matchers.<Object>equalTo(uprns.get(uprn).get("uprn")));
         }
-    }
-
-    public int NumAddresses()
-    {
-        int limit = Integer.parseInt(response.getBody().jsonPath().get("response.limit").toString());
-        int total = Integer.parseInt(response.getBody().jsonPath().get("response.total").toString());
-        int numAddresses = limit < total ? limit : total;
-        return numAddresses;
     }
 
     @Then("^the postcode results should contain all these UPRNs in any address$")
