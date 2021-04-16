@@ -98,16 +98,9 @@ public class Postcode {
 
     @Then("^the postcode results should contain these UPRNs at positions$")
     public void the_postcode_results_should_contain_these_uprns_at_positions(DataTable dataTable) {
-        JsonPath jsonPath = response.getBody().jsonPath();
-        List<Map<String, String>> uprns = dataTable.asMaps(String.class, String.class);
-        for (int uprn = 0; uprn < uprns.size(); uprn++) {
-            // find numAddresses in results then assert that numAddresses >= uprn or will get null error
-            API api = new API();
-            assertThat(api.numAddresses(response), Matchers.greaterThan(0));
-            assertThat(api.numAddresses(response), Matchers.greaterThan(uprn));
-            String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);
-            assertThat(jsonPath.get(response_address_uprn), Matchers.<Object>equalTo(uprns.get(uprn).get("uprn")));
-        }
+        API api = new API();
+        boolean match = api.uprnsAllFoundInCorrectOrder(response, dataTable);
+        assertThat(match, Matchers.equalTo(true));
     }
 
     @Then("^the postcode results should contain all these UPRNs in any address$")
@@ -134,7 +127,8 @@ public class Postcode {
     @Then("^there should be (\\d+) addresses$")
     public void there_should_be_addresses(int numAddresses) throws Exception {
         API api = new API();
-        assertThat(numAddresses, Matchers.equalTo(api.numAddresses(response)));
+        int countAddresses = api.countAddresses(response);
+        assertThat(countAddresses, Matchers.equalTo(api.numAddresses(response)));
     }
 
     @Then("^the first (\\d+) addresses should have countryCode \"([^\"]*)\"$")

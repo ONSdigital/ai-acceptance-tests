@@ -97,8 +97,8 @@ public class Addresses {
         for (int uprn = 0; uprn < uprns.size(); uprn++) {
             // find numAddresses in results then assert that numAddresses >= uprn or will get null error
             API api = new API();
-            assertThat(api.numAddresses(response), Matchers.greaterThan(0));
-            assertThat(api.numAddresses(response), Matchers.greaterThan(uprn));
+            assertThat(api.countAddresses(response), Matchers.greaterThan(0));
+            assertThat(api.countAddresses(response), Matchers.greaterThan(uprn));
             String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);
             assertThat(jsonPath.get(response_address_uprn), Matchers.<Object>equalTo(uprns.get(uprn).get("uprn")));
         }
@@ -128,28 +128,13 @@ public class Addresses {
         assertThat((response.getBody().jsonPath().get("status.message")).toString(), equalTo(raw.get(2).get(1)));
     }
 
-    // TODO: can I pass by ref?
-    public boolean addressStringFound(String addressContents) throws Throwable {
-        JsonPath path = response.getBody().jsonPath();
-        int numAddresses = path.get("response.total");
-        boolean found = false;
-        for (int nAddress = 0; nAddress < numAddresses; nAddress++) {
-            String addressPath = String.format("response.addresses[%d].formattedAddress", nAddress);
-            String address = path.get(addressPath).toString();
-
-            if (address.contains(addressContents))
-                return true;
-        }
-        return false;
-    }
-
     public boolean classificationCodeFound(DataTable classification_codes) {
         List<String> codes =  classification_codes.asList(String.class);
         int limit = Integer.parseInt(response.getBody().jsonPath().get("response.limit").toString());
         int total = Integer.parseInt(response.getBody().jsonPath().get("response.total").toString());
-        int numAddresses = limit < total ? limit : total;
+        API api = new API();
         boolean found = false;
-        for (int nAddress = 0; nAddress < numAddresses; nAddress++) {
+        for (int nAddress = 0; nAddress < api.countAddresses(response); nAddress++) {
             String classificationPath = String.format("response.addresses[%d].classificationCode", nAddress);
             String classificationCode = response.getBody().jsonPath().get(classificationPath).toString();
 
