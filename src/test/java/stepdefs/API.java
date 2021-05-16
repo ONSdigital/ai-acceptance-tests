@@ -26,14 +26,14 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.path.json.JsonPath.from;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-// TODO - why can't I get this to be static?
+// TODO - static methods not possible?
 public class API {
 
-   // TODO: can I pass by ref?
+   // TODO: does java do by ref?
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
 
-        for (int nAddress = 0; nAddress < countAddresses(response); nAddress++) {
+        for (int nAddress = 0; nAddress < numAddresses(response); nAddress++) {
             String addressPath = String.format("response.addresses[%d].formattedAddress", nAddress);
             String address = path.get(addressPath).toString().toUpperCase();
 
@@ -46,7 +46,7 @@ public class API {
     public boolean allAddressesContain(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
 
-        for (int nAddress = 0; nAddress < countAddresses(response); nAddress++) {
+        for (int nAddress = 0; nAddress < numAddresses(response); nAddress++) {
             String addressPath = String.format("response.addresses[%d].formattedAddress", nAddress);
             String address = path.get(addressPath).toString().toUpperCase();
 
@@ -63,19 +63,8 @@ public class API {
 //        int numAddresses = limit < total ? limit : total;
 //        return numAddresses;
 //    }
-    public int numAddresses(ResponseOptions<Response> response)
-    {
-        //TODO: how avoid null ptr exception (can't do a null check)
-        // eg total doesn't exist in response body
-        int limit = response.getBody().jsonPath().getInt("response.limit");
-        int total = response.getBody().jsonPath().getInt("response.total");
-        int numAddresses = limit < total ? limit : total;
-        return numAddresses;
-    }
 
-    // TODO: not sure where I'm going with this, need to iterate over json response and find the total key value
-    // or count the number of address keys as I go?
-    public int countAddresses(ResponseOptions<Response> response)
+    public int numAddresses(ResponseOptions<Response> response)
     {
         List<String> addresses = response.getBody().jsonPath().getList("response.addresses");
         return addresses.size();
@@ -141,7 +130,7 @@ public class API {
     public boolean uprnsAllFoundInCorrectOrder(ResponseOptions<Response> response, DataTable uprnTable) {
         JsonPath jsonPath = response.getBody().jsonPath();
         List<Map<String, String>> uprns = uprnTable.asMaps(String.class, String.class);
-        if (countAddresses(response) == 0 || countAddresses(response) < uprns.size())
+        if (numAddresses(response) == 0 || numAddresses(response) < uprns.size())
             return false;
         for (int uprn = 0; uprn < uprns.size(); uprn++) {
             String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);

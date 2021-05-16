@@ -28,6 +28,8 @@ public class UPRN {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_uprn = "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses/uprn";
+    private String username = "rhuser";
+    private String password = "]K:7m:yY";
 
     @Given("^I setup GET for UPRN$")
     public void i_setup_GET() throws Throwable {
@@ -35,8 +37,8 @@ public class UPRN {
         builder.setBaseUri(uri_uprn);
         builder.setContentType(ContentType.JSON);
         PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName("allamr");
-        authenticationScheme.setPassword("N3wport@1225");
+        authenticationScheme.setUserName(username);
+        authenticationScheme.setPassword(password);
         builder.setAuth(authenticationScheme);
     }
 

@@ -27,6 +27,8 @@ public class Addresses {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri = "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses";
+    private String username = "rhuser";
+    private String password = "]K:7m:yY";
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
@@ -34,8 +36,8 @@ public class Addresses {
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
         PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName("allamr");
-        authenticationScheme.setPassword("N3wport@1225");
+        authenticationScheme.setUserName(username);
+        authenticationScheme.setPassword(password);
         builder.setAuth(authenticationScheme);
     }
 
@@ -97,8 +99,8 @@ public class Addresses {
         for (int uprn = 0; uprn < uprns.size(); uprn++) {
             // find numAddresses in results then assert that numAddresses >= uprn or will get null error
             API api = new API();
-            assertThat(api.countAddresses(response), Matchers.greaterThan(0));
-            assertThat(api.countAddresses(response), Matchers.greaterThan(uprn));
+            assertThat(api.numAddresses(response), Matchers.greaterThan(0));
+            assertThat(api.numAddresses(response), Matchers.greaterThan(uprn));
             String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);
             assertThat(jsonPath.get(response_address_uprn), Matchers.<Object>equalTo(uprns.get(uprn).get("uprn")));
         }
@@ -134,7 +136,7 @@ public class Addresses {
         int total = Integer.parseInt(response.getBody().jsonPath().get("response.total").toString());
         API api = new API();
         boolean found = false;
-        for (int nAddress = 0; nAddress < api.countAddresses(response); nAddress++) {
+        for (int nAddress = 0; nAddress < api.numAddresses(response); nAddress++) {
             String classificationPath = String.format("response.addresses[%d].classificationCode", nAddress);
             String classificationCode = response.getBody().jsonPath().get(classificationPath).toString();
 

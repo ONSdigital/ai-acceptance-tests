@@ -1,4 +1,4 @@
-Feature: Address Index features
+Feature: /addresses/uprn
 
   Scenario: UPRN search
     Given I setup GET for UPRN

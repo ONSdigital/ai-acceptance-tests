@@ -1,4 +1,4 @@
-Feature: Address Index features
+Feature: addresses/postcode
 
   Scenario: 1. Standard Postcode search
     Given the user defines GET for postcode with these parameters
@@ -204,3 +204,13 @@ Feature: Address Index features
     Then there should be 1 addresses
     Then the first 1 addresses should have countryCode "S"
     #Then the first 1 addresses should not have countryCode "E"
+
+  Scenario: Exclude country E for postcode with 2 addresses, one in S, one in E.
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | nboost | 1     |
+      | eboost | 1     |
+      | wboost | 1     |
+      | sboost | 1     |
+    When the user performs GET for postcode "PO8 9YD"
+    Then there should be 38 addresses

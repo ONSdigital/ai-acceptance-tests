@@ -28,6 +28,8 @@ public class Random {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri = "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses/random";
+    private String username = "rhuser";
+    private String password = "]K:7m:yY";
 
     @Given("^I setup GET for random address$")
     public void iSetupGETForRandomAddress() throws Throwable {
@@ -35,18 +37,19 @@ public class Random {
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
         PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName("allamr");
-        authenticationScheme.setPassword("N3wport@1225");
+        authenticationScheme.setUserName(username);
+        authenticationScheme.setPassword(password);
         builder.setAuth(authenticationScheme);
     }
 
     @And("^I set parameters for random address search$")
     public void iSetParametersForRandomAddressSearch(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
+        //TODO: upgrade java to enable these:
+        //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
-        //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
         RequestSpecification requestSpec = builder.build();
         spec = given().spec(requestSpec);
     }
@@ -59,6 +62,7 @@ public class Random {
     @Then("^The random response should contain (\\d+) address$")
     public void theRandomResponseShouldContainAddress(int numAddr) {
         API api = new API();
+        int numAddresses = api.numAddresses(response); // test
         assertThat(numAddr,Matchers.equalTo(api.numAddresses(response)));
     }
 

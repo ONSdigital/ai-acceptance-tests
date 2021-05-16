@@ -1,4 +1,4 @@
-Feature: Search by Address Features
+Feature: /addresses
 
   Scenario: Address search Synonyms
     Given I setup GET for address
@@ -66,7 +66,7 @@ Feature: Search by Address Features
       | classificationfilter | residential          |
     When I perform GET for address
     Then The results should not include an address which contains "Bookmakers"
-    # just need to find a better test
+    # this fails so I need to find a better test address
 
   Scenario: Address search
     Given I setup GET for address

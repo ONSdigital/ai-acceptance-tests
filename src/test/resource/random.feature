@@ -1,4 +1,4 @@
-Feature: Address Index features
+Feature: /addresses/random
 
   Scenario: Random address search
     Given I setup GET for random address
