@@ -1,0 +1,9130 @@
+{
+	"info": {
+		"_postman_id": "0bb63fe6-a393-408f-b77d-2b2c76ae218f",
+		"name": "AIMS EQ Acceptance Tests NEW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Londonderry/Derry",
+			"item": [
+				{
+					"name": "1. eq/partial Derry/Londonderry street name",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=duncreggan&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "duncreggan"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential",
+									"disabled": true
+								}
+							]
+						},
+						"description": "total: 159\r\nwith Duncreggan in building name, then in the road name. Has Derry address versions nearer top of list, then repeats addresses with Londonderry version."
+					},
+					"response": []
+				},
+				{
+					"name": "1.1 eq/partial Derry/Londonderry street name + Derry",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=duncreggan derry&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "duncreggan derry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								}
+							]
+						},
+						"description": "total: 159\r\nwith Duncreggan in building name, then in the road name. Has Derry address versions nearer top of list, then repeats addresses with Londonderry version."
+					},
+					"response": []
+				},
+				{
+					"name": "1.2 rh/partial Londonderry street name Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/rh/partial?input=duncreggan Londonderry&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"rh",
+								"partial"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "duncreggan Londonderry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								}
+							]
+						},
+						"description": "total: 159\r\nwith Duncreggan in building name, then in the road name. Has Derry address versions nearer top of list, then repeats addresses with Londonderry version."
+					},
+					"response": []
+				},
+				{
+					"name": "2. eq/ partial Londonderry/Derry building name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check output: \"addresses\": [\r",
+									"            {\r",
+									"                \"uprn\": \"100071444531\",\r",
+									"                \"bestMatchAddress\": \"Unilak Motors UK LTD, Dunvale House, Bromford Lane, Tyburn, Birmingham, B24 8DL\",\r",
+									"                \"bestMatchAddressType\": \"NAG\"\r",
+									"            },\r",
+									"            {\r",
+									"                \"uprn\": \"9101185502717\",\r",
+									"                \"bestMatchAddress\": \"Dunvale House, Duncreggan Road, Derry, BT48 0AH\",\r",
+									"                \"bestMatchAddressType\": \"NISRA\"\r",
+									"            },\r",
+									"            {\r",
+									"                \"uprn\": \"185502717\",\r",
+									"                \"bestMatchAddress\": \"Dunvale House, Duncreggan Road, Londonderry, BT48 0AH\",\r",
+									"                \"bestMatchAddressType\": \"NISRA\"\r",
+									"            },\r",
+									"            {\r",
+									"                \"uprn\": \"9101185846959\",\r",
+									"                \"bestMatchAddress\": \"Foyle House, Dunvale Park, Derry, BT48 0AU\",\r",
+									"                \"bestMatchAddressType\": \"NISRA\"\r",
+									"            },\r",
+									"            {\r",
+									"                \"uprn\": \"185846959\",\r",
+									"                \"bestMatchAddress\": \"Foyle House, Dunvale Park, Londonderry, BT48 0AU\",\r",
+									"                \"bestMatchAddressType\": \"NISRA\"\r",
+									"            }\r",
+									"        ],\r",
+									"       "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Dunvale House&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Dunvale House"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. eq/partial Londonderry/Derry building name exclude NI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"has omitted the 4 NI addresses"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Dunvale House&limit=200&nboost=0&eboost=10&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Dunvale House"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3.1 eq/partial Londonderry/Derry building name exclude NI Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"has omitted the 4 NI addresses"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Dunvale House&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Dunvale House"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. eq/postcode Londonderry/Derry educational + NI filters",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7RD&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7RD"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.1 eq/postcode Londonderry/Derry workplace + NI filters",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7RD&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7RD"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.2 eq/postcode Londonderry only workplace + NI filters",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7RD londonderry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7RD londonderry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.3 eq/postcode Derry only after pc, workplace + NI filters",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7RD derry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7RD derry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.5 eq/postcode Derry only before pc, workplace + NI filters",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=derry BT48 7RD&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "derry BT48 7RD"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4.6 eq/postcode Derry, only before pc, workplace + NI filters",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=derry, BT48 7RD&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "derry, BT48 7RD"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. eq/groupedpostcode Londonderry/Derry partial postcode street grouping, educational building name, only NI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.01 eq/groupedpostcode Londonderry/Derry partial postcode street grouping, educational building name, only NI Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.02 eq/groupedpostcode Londonderry/Derry partial postcode street grouping, educational building name, only NI Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.1 eq/groupedpostcode specify Londonderry partial postcode street grouping, only NI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R londonderry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R londonderry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.2 eq/groupedpostcode specify Derry partial postcode street grouping, only NI Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R derry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R derry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.3 eq/groupedpostcode specify Derry partial postcode street grouping, only NI Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=derry BT48 7R&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "derry BT48 7R"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.4 eq/groupedpostcode specify Londonderry partial postcode street grouping, only NI Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R londonderry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R londonderry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.5 eq/groupedpostcode specify Derry partial postcode street grouping, only NI Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R derry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R derry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.6 eq/groupedpostcode specify Derry partial postcode street grouping, only NI Copy 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R londonderry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R londonderry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5.7 eq/groupedpostcode specify Derry partial postcode street grouping, only NI Copy 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT48 7R derry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT48 7R derry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. eq/partial Londonderry/Derry Londonderry NI only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Londonderry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Londonderry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. eq/partial Londonderry/Derry Derry NI only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"check only lists 2 postcode buckets, duplicates each bucket for londonderry and derry, and only lists buckets with educational addresses\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Derry&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Derry"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Postcodes grouped by street",
+			"item": [
+				{
+					"name": "8. eq/partial William Hill NI boost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"161 results, 160 portsmouth flat addresses (PAF) and parking space (NAG), no postcode grouping, plus 1 NI address"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=william hill&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "william hill"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8.1 eq/partial William Hill NI boost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"161 results, 160 portsmouth flat addresses (PAF) and parking space (NAG), no postcode grouping, plus 1 NI address"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=william&limit=5000&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "william"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "9. eq/partial Block of flats by building name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"161 results, 160 portsmouth flat addresses (PAF) and parking space (NAG), no postcode grouping, plus 1 NI address"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Sarah Robinson&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Sarah Robinson"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10. eq/postcode Block of flats by postcode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"lists  flat 61-120  in Sarah Robinson House (NAG), Portsmouth, no parking spaces,  total = 60"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=PO1 3JA&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "PO1 3JA"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "bestaddressmatch",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "11. eq/postcode Favourpaf false, Block of flats by postcode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"lists  flat 61-120  in Sarah Robinson House (NAG), Portsmouth, no parking spaces,  total = 60"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=PO1 3JA&limit=200&favourpaf=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "PO1 3JA"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false"
+								},
+								{
+									"key": "bestaddressmatch",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "12. eq/partial NI Boost Block of flats by building name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"Sarah Jane Robinson House, 15 Rathenraw Industrial Estate, Antrim, BT41 2SJ"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Sarah Robinson&limit=200&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Sarah Robinson"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "13. eq/partial E Boost Block of flats by building name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"only 160 England results"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Sarah Robinson&limit=200&nboost=0&eboost=10&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Sarah Robinson"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14. eq/partial E, NI Boost Block of flats by building name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"only 160 England results"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Sarah Robinson&limit=200&nboost=10&eboost=10&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Sarah Robinson"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "14.1 eq/partial E, NI Boost Block of flats by building name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"only 160 England results"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Sarah Robinson&limit=200&nboost=5&eboost=10&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Sarah Robinson"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "5"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "15. eq/partial 1 M1 partial address too short",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=1 M1&limit=1000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "1 M1"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "16. eq/partial 1 M11 partial address",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=1 M11&limit=1000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "1 M11"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "17. eq/groupedpostcode SO32 1 buckets yes/no/combi",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=so32 1e&limit=1000&groupfullpostcodes=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "so32 1e"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "18. eq/groupedpostcode SO32 1 buckets yes/no/combi Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=SO32 1E&limit=1000&grouping=no",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "SO32 1E"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								},
+								{
+									"key": "grouping",
+									"value": "no"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Part Postcode",
+			"item": [
+				{
+					"name": "19. eq/groupedpostcode - 1 pc covering >1 street",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=HD7 5UZ&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "HD7 5UZ"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "19.1 eq/groupedpostcode - part postcode covering >1 street",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=HD7 5U&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "HD7 5U"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20. eq/groupedpostcode - letter instead of number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BA2 OA&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BA2 OA"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "21. eq/groupedpostcode letter instead of number no spaces no spaces",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BA2OA&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BA2OA"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "22. eq/groupedpostcode eq/groupedpostcode Part postcode space in wrong place and letter not number Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BA20A&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BA20A"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "23. eq/groupedpostcode Part postcode space in wrong place and letter not number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BA20 A&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BA20 A"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "24. eq/groupedpostcode Part postcode correct version of above",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BA2 0A&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BA2 0A"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "25. eq/groupedpostcode Part Postcode M1 1A",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=M1 1a&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "M1 1a"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26. eq/groupedpostcode Part postcode no spaces letter instead of number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=M11&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "M11"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26.1 eq/groupedpostcode Part postcode no spaces letter instead of number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=M11 1BW&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "M11 1BW"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26.2 eq/groupedpostcode Part postcode no spaces letter instead of number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=M11 1B&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "M11 1B"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "26.3 eq/groupedpostcode Part postcode no spaces letter instead of number",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"212 addresses with BA2x postcodes (int x) then BA2 x not grouped, repeats some postcodes\r",
+									"1 = \"bestMatchAddress\": \"Oaklands Primary School, Preston Grove, Yeovil, BA20 2DU\",\r",
+									"2 = \"bestMatchAddress\": \"9 Oakridge Park, Yeovil, BA21 3JY\","
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=M11 1BW Wheler&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "M11 1BW Wheler"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								},
+								{
+									"key": "groupfullpostcodes",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "27. eq/groupedpostcode Part Postcode correct spaces M1 1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=M1 1&limit=1000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "M1 1"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "28. eq/groupedpostcode Part Postcode no spaces 1 M1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=1 M1&limit=1000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "1 M1"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "29.eq/groupedpostcode Part Postcode no spaces 1 M11",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=1 M11&limit=1000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "1 M11"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "30. eq/groupedpostcode Part Postcode in English only Scottish results",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=SO35&limit=1000&nboost=0&sboost=10&eboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "SO35"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "31. eq/groupedpostcode  Part Postcode in England, educational and NI filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=NP20&limit=1000&nboost=0&sboost=0&eboost=10&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "NP20"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "31.1 eq/groupedpostcode  Part Postcode, educational and NI filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=NP20&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "NP20"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "31.2 eq/groupedpostcode  Part Postcode, educational and NI filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=NP20&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "NP20"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "32. eq/groupedpostcode Part Postcode in NI, educational and NI filter Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT18&limit=1000&nboost=10&sboost=0&eboost=0&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT18"
+								},
+								{
+									"key": "limit",
+									"value": "1000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Classification Filters",
+			"item": [
+				{
+					"name": "33. eq/partial Workplace Scotland with no Classfn Filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "34. eq/partial Workplace Scotland with Residential Filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0&classificationfilter=residential",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "35. eq/partial Workplace no classfn filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest&limit=1500",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "36. eq/partial Workplace workplace filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest&limit=1500&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "36.1 eq/partial Natwest postcode",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest BH8 9US&limit=1500",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest BH8 9US"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "36.2 eq/partial Natwest postcode + workplace filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest BH8 9US&limit=1500&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest BH8 9US"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BIN eq/partial Workplace Scotland part address with no Classfn Filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=natio&limit=1500&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "natio"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "37. eq/partial Scotland part address with no Filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=262 Union Street&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "262 Union Street"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "37.1 eq/partial  Scotland part address with residential filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=262 Union Street&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0&classificationfilter=residential",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "262 Union Street"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "37.2 eq/partial Scotland part address with workplace Filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=262 Union Street&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "262 Union Street"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "37.1 eq/partial  Scotland part address with residential filter Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses?input=262 Union Street&classificationfilter=workplace",
+							"protocol": "https",
+							"host": [
+								"whitelodge-ai-api",
+								"census-gcp",
+								"onsdigital",
+								"uk"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "262 Union Street"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "38. eq/postcode Scotland no classifn filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=AB10 1TP&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "AB10 1TP"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "39. eq/postcode Scotland with resid filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=AB10 1TP&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0&classificationfilter=residential",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "AB10 1TP"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "40. eq/postcode Scotland with wkplace filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=AB10 1TP&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "AB10 1TP"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "41. eq/postcode no spacesPostcode Scotland with wkplace filter Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=AB101TP&limit=1500&nboost=0&eboost=0&sboost=10&wboost=0&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "AB101TP"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "42. eq/partial Workplace only in England and Scotland",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest&limit=1500&nboost=0&eboost=10&sboost=10&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "43. eq/partial Workplace only S&W",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Natwest&limit=1500&nboost=0&eboost=0&sboost=10&wboost=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Natwest"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "10"
+								},
+								{
+									"key": "wboost",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "44. eq/partial Residential filter - no parking spaces",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=sarah robinson&limit=1500&classificationfilter=residential",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "sarah robinson"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "45.eq/postcode Residential filter - no parking spaces",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=po1 3jb&limit=1500&classificationfilter=residential",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "po1 3jb"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "46. eq/postcode sarah robinson , workplace filter - no parking spaces",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=sarah robinson&limit=1500&classificationfilter=workplace",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "sarah robinson"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "workplace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "47. eq/postcode GU32 3JF workplace filter - no parking spaces",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=GU32 3JF&limit=1500&classificationfilter=residential",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "GU32 3JF"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "residential"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "48. eq/partial Belfast educational classification filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Belfast&limit=1500&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Belfast"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "49. eq/groupedpostcode educational filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BN3 3Y&limit=1500&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BN3 3Y"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "50. eq/partial part address 28 Bit",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=28 Bit&limit=1500",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "28 Bit"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "51. eq/partial in wales favourwelsh=FALSE",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Canada Road&limit=1500&nboost=0&eboost=0&sboost=0&wboost=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Canada Road"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "10"
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "52. eq/partial in wales favourwelsh=TRUE",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Canada Road&limit=1500&nboost=0&eboost=0&sboost=0&wboost=10&favourwelsh=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Canada Road"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "10"
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "53. eq/partial in england favourwelsh=FALSE",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Canada Road&limit=1500&nboost=0&eboost=10&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Canada Road"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "54. eq/partial in england favourwelsh=TRUE",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Canada Road&limit=1500&nboost=0&eboost=10&sboost=0&wboost=0&favourwelsh=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Canada Road"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "55. eq/partial 2 canada road addresses in welsh",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=2 Canada Road&limit=1500&favourwelsh=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "2 Canada Road"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "56. eq/partial 2 canada road addresses in welsh",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=2 Canada Road&limit=1500",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "2 Canada Road"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "new",
+			"item": [
+				{
+					"name": "57. eq/partial 11 Mardy no boosts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"161 results, 160 portsmouth flat addresses (PAF) and parking space (NAG), no postcode grouping, plus 1 NI address"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=11 Mardy&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "11 Mardy"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "58. eq/partial 11 Mardy E boost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"161 results, 160 portsmouth flat addresses (PAF) and parking space (NAG), no postcode grouping, plus 1 NI address"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=11 Mardy&limit=200&eboost=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "11 Mardy"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "nboost",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourpaf",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "59. eq/partial NI part postcode returns posttown N bug",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=BT18&limit=1500",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "BT18"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Part Address",
+			"item": [
+				{
+					"name": "60. eq/partial part address '66 Ch' NI educational filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=66 Ch&limit=1500&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "66 Ch"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "61. eq/partial part address 'Hoyw' NI educational filter",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Holyw&limit=1500&nboost=10&eboost=0&sboost=0&wboost=0&classificationfilter=educational",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Holyw"
+								},
+								{
+									"key": "limit",
+									"value": "1500"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Typeahead",
+			"item": [
+				{
+					"name": "62. eq/partial Typeahead timeout",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Station Road&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "63.eq/partial Typeahead 9 Station Road Nboost",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=0&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "0"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "64. eq/partial Typeahead 9 Station Road Eboost",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=0&eboost=10&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "65. eq/partial Typeahead 9 Station Road E=Nboost",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=10&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "10"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "66. Typeahead 9 Station Road N>Eboost",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=1&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "1"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "67. eq/partial 9 Station Road N>E boost NOT allow_partial_search_results",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"this does not solve problem, the top 9 results are not all in NI\r",
+									"https://collaborate2.ons.gov.uk/confluence/display/RAI/Typeaead+Partial+Results+Issue\r",
+									"/partial && tReq>250ms => fail or return what results have\r",
+									"So what effect should this have here?\r",
+									"\r",
+									"what does the partial in allow_partial_search-results refer to?\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=1&sboost=0&wboost=0&allow_partial_search_results=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "1"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								},
+								{
+									"key": "allow_partial_search_results",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "68. eq/partial Station Road N>E boost allow_partial_search_results",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"this does not solve problem, the top 9 results are not all in NI\r",
+									"https://collaborate2.ons.gov.uk/confluence/display/RAI/Typeaead+Partial+Results+Issue\r",
+									"/partial && tReq>250ms => fail or return what results have\r",
+									"So what effect should this have here?\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Station Road&limit=5000&nboost=10&eboost=1&sboost=0&wboost=0",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "1"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								},
+								{
+									"key": "allow_partial_search_results",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "69. eq/partial Station Road N>E boost NOT allow_partial_search_results = false Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"this does not solve problem, the top 9 results are not all in NI\r",
+									"https://collaborate2.ons.gov.uk/confluence/display/RAI/Typeaead+Partial+Results+Issue\r",
+									"/partial && tReq>250ms => fail or return what results have\r",
+									"So what effect should this have here?\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{[pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=1&sboost=0&wboost=0&allow_partial_search_results=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "1"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								},
+								{
+									"key": "allow_partial_search_results",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "69.1 eq/partial 10 Hi",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"this does not solve problem, the top 9 results are not all in NI\r",
+									"https://collaborate2.ons.gov.uk/confluence/display/RAI/Typeaead+Partial+Results+Issue\r",
+									"/partial && tReq>250ms => fail or return what results have\r",
+									"So what effect should this have here?\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=1&sboost=0&wboost=0&allow_partial_search_results=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "1"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								},
+								{
+									"key": "allow_partial_search_results",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wet Wet Wet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"this does not solve problem, the top 9 results are not all in NI\r",
+									"https://collaborate2.ons.gov.uk/confluence/display/RAI/Typeaead+Partial+Results+Issue\r",
+									"/partial && tReq>250ms => fail or return what results have\r",
+									"So what effect should this have here?\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=1&sboost=0&wboost=0&allow_partial_search_results=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "1"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								},
+								{
+									"key": "allow_partial_search_results",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Wet Wet Wet Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"this does not solve problem, the top 9 results are not all in NI\r",
+									"https://collaborate2.ons.gov.uk/confluence/display/RAI/Typeaead+Partial+Results+Issue\r",
+									"/partial && tReq>250ms => fail or return what results have\r",
+									"So what effect should this have here?\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=9 Station Road&limit=5000&nboost=10&eboost=1&sboost=0&wboost=0&allow_partial_search_results=false",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "9 Station Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "10"
+								},
+								{
+									"key": "eboost",
+									"value": "1"
+								},
+								{
+									"key": "sboost",
+									"value": "0"
+								},
+								{
+									"key": "wboost",
+									"value": "0"
+								},
+								{
+									"key": "classificationfilter",
+									"value": "educational",
+									"disabled": true
+								},
+								{
+									"key": "allow_partial_search_results",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CE",
+			"item": [
+				{
+					"name": "70. eq/partial CEs NR4 7TJ floor 0 flat 1 room a",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=nr4 7tj floor 0 flat 1&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "nr4 7tj floor 0 flat 1"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "71. eq/partial CEs floor 0 flat 1 room a NR4 7TJ",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=floor 0 flat 1 NR4 7TJ&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "floor 0 flat 1 NR4 7TJ"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "more stuff",
+			"item": [
+				{
+					"name": "uprn",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=10094120777&limit=5000&epoch 77",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "10094120777"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "epoch 77",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "startboost?",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=floor 0 flat 1 NR4 7TJ&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "floor 0 flat 1 NR4 7TJ"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CC1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/addresses?limit=5000&input=46 Merrivale Road",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "input",
+									"value": "46 Merrivale Road"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CC1 Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=floor 0 flat 1 NR4 7TJ&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "floor 0 flat 1 NR4 7TJ"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CC1 Copy 2",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=floor 0 flat 1 NR4 7TJ&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "floor 0 flat 1 NR4 7TJ"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CC1 Copy 3",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=floor 0 flat 1 NR4 7TJ&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "floor 0 flat 1 NR4 7TJ"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rangekm",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=PO8 9YD&limit=5000&rangekm=0.01",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "PO8 9YD"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "rangekm",
+									"value": "0.01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rangekm Copy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "r2Qe-rlBr0F",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "rhuser",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=IM9 4AJ&limit=5000&rangekm=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "IM9 4AJ"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "rangekm",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rangekm Copy 2",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=Railway Arch 64 Vallance Road&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "Railway Arch 64 Vallance Road"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "rangekm",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Classification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "epochs",
+			"item": [
+				{
+					"name": "72. eq/postcode epoch 72",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=GU31 4GA&limit=5000&epoch 72",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "GU31 4GA"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "epoch 72",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "73. eq/postcode epoch 77",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=GU31 4GA&limit=5000&epoch =77",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "GU31 4GA"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "epoch ",
+									"value": "77"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fallback",
+			"item": [
+				{
+					"name": "74. eq/partial fallback=false",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=37 wagtail rad&limit=5000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "37 wagtail rad"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "fallback",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "75. eq/partial fallback=true",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=37 wagtail rad&limit=5000&fallback=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "37 wagtail rad"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "fallback",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "76. eq/partial fallback=true on very wrong address",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=sothmton biterng park&limit=5000&fallback=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "sothmton biterng park"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "fallback",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rh cc etc Copy 3",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/?input=room 101&limit=5000&fallback=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								""
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "room 101"
+								},
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "nboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "eboost",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "sboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "wboost",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "favourwelsh",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "fallback",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST partial",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=duncreggan&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "duncreggan"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								}
+							]
+						},
+						"description": "total: 159\r\nwith Duncreggan in building name, then in the road name. Has Derry address versions nearer top of list, then repeats addresses with Londonderry version."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auxiliary Index",
+			"item": [
+				{
+					"name": "100. 4 Skipton Close aux=false, matchthreshold=5",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses?input=4 Skipton Close&includeauxiliarysearch=false&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "false"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "101. 4 Skipton Close aux=true matchThreshold=5",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses?input=4 Skipton Close&includeauxiliarysearch=true&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "102. 4 Skipton Close aux=false matchThreshold=0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses?input=4 Skipton Close&matchthreshold=0&includeauxiliarysearch=false&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "false"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "103. 4 Skipton Close aux=true matchThreshold=0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses?input=4 Skipton Close&matchthreshold=0&includeauxiliarysearch=true&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "104. eq 4 Skipton Close aux=false, matchthreshold=5",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=4 Skipton Close&includeauxiliarysearch=false&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "false"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "105. eq 4 Skipton Close aux=true matchThreshold=5",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=4 Skipton Close&includeauxiliarysearch=true&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "106. eq 4 Skipton Close aux=false matchThreshold=0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=4 Skipton Close&matchthreshold=0&includeauxiliarysearch=false&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "false"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "103. eq 4 Skipton Close aux=true matchThreshold=0",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses/eq?input=4 Skipton Close&matchthreshold=0&includeauxiliarysearch=true&limit=200",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses",
+								"eq"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4 Skipton Close"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "200"
+								},
+								{
+									"key": "verbose",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "20 Letsbe Avenue",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses?input=999%20Letsbe%20Avenue&includeauxiliarysearch=true ",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "999%20Letsbe%20Avenue"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10 Test drive",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses?input=10%20Test%20Drive&includeauxiliarysearch=true ",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "10%20Test%20Drive"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "10 Test drive London DN37 9JECopy",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses/postcode/DN37%209JE?&includeauxiliarysearch=true&limit=100&matchthreshold=0\n",
+							"protocol": "https",
+							"host": [
+								"whitelodge-ai-api",
+								"census-gcp",
+								"onsdigital",
+								"uk"
+							],
+							"path": [
+								"addresses",
+								"postcode",
+								"DN37%209JE"
+							],
+							"query": [
+								{
+									"key": null,
+									"value": null
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4 Skipton close in ai-acc-tests env",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses?input=4%20skipton%20close&includeauxiliarysearch=true&matchthreshold=0",
+							"protocol": "https",
+							"host": [
+								"ai-accp-tests-ai-api",
+								"ai",
+								"census-gcp",
+								"onsdigital",
+								"uk"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "4%20skipton%20close"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true"
+								},
+								{
+									"key": "matchthreshold",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4 Skipton Close searched by pc GU16 6DG in ai-acc-tests envGU16 6DG",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pwd}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses?input=GU166DG&includeauxiliarysearch=true&limit=100",
+							"protocol": "https",
+							"host": [
+								"ai-accp-tests-ai-api",
+								"ai",
+								"census-gcp",
+								"onsdigital",
+								"uk"
+							],
+							"path": [
+								"addresses"
+							],
+							"query": [
+								{
+									"key": "input",
+									"value": "GU166DG"
+								},
+								{
+									"key": "includeauxiliarysearch",
+									"value": "true"
+								},
+								{
+									"key": "limit",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "77. eq/partial caravan",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{pwd}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/addresses/eq?input=Mill Lane Blackburn&limit=5000&classification filter =Rd01",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"addresses",
+						"eq"
+					],
+					"query": [
+						{
+							"key": "nboost",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "eboost",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "sboost",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "wboost",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "favourwelsh",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "input",
+							"value": "Mill Lane Blackburn"
+						},
+						{
+							"key": "limit",
+							"value": "5000"
+						},
+						{
+							"key": "classification filter ",
+							"value": "Rd01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "rh cc etc Copy 2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{pwd}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{user}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/addresses/?input=room 101&limit=5000&fallback=true",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"addresses",
+						""
+					],
+					"query": [
+						{
+							"key": "input",
+							"value": "room 101"
+						},
+						{
+							"key": "limit",
+							"value": "5000"
+						},
+						{
+							"key": "nboost",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "eboost",
+							"value": "10",
+							"disabled": true
+						},
+						{
+							"key": "sboost",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "wboost",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "favourwelsh",
+							"value": "true",
+							"disabled": true
+						},
+						{
+							"key": "fallback",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
