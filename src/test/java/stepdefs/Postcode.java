@@ -5,6 +5,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
+import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -27,18 +28,23 @@ public class Postcode {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri_pc = "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses/postcode";
+    private String uri_pc = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses/rh/postcode";
+    //private String uri_pc = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/addresses/postcode";
     private String username = "rhuser";
     private String password = "]K:7m:yY";
+    private String bearer = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.Nz6E8h2viXnOk7ScT3igfTiM5ITL0whOnyjvuZusxi4";
+
 
     @Given("^the user defines GET for postcode with these parameters$")
     public void the_user_defines_get_for_postcode_with_these_parameters(DataTable dataTable) throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_pc);
         builder.setContentType(ContentType.JSON);
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName(username);
-        authenticationScheme.setPassword(password);
+        //PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
+        //authenticationScheme.setAccessToken(bearer);
+          PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
+          authenticationScheme.setUserName(username);
+          authenticationScheme.setPassword(password);
         builder.setAuth(authenticationScheme);
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
