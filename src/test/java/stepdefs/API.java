@@ -31,10 +31,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class API {
 
     public static final String baseUri = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/";
- //   public static final String baseUri = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/";
+    public static final String bulkUri = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/";
     public static final String authMethod = "basic";
    //  public static final String authMethod = "bearer";
-    public static final String uri = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses";
     public static final String username = "rhuser";
    // the next two fields must have dummy values in GitHub
     public static final String password = "dummy";
