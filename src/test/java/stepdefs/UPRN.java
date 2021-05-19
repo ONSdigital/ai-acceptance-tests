@@ -6,6 +6,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
+import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -27,19 +28,23 @@ public class UPRN {
     private ResponseOptions<Response> response; // TODO: base class
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri_uprn = "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses/uprn";
-    private String username = "rhuser";
-    private String password = "]K:7m:yY";
+    private String uri_uprn = API.baseUri + "addresses/uprn";
+    private String username = API.username;
+    private String password = API.password;
+    private String bearer = API.bearer;
 
     @Given("^I setup GET for UPRN$")
     public void i_setup_GET() throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_uprn);
         builder.setContentType(ContentType.JSON);
+      //  PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
+      //  authenticationScheme.setAccessToken(bearer);
         PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
         authenticationScheme.setUserName(username);
         authenticationScheme.setPassword(password);
         builder.setAuth(authenticationScheme);
+
     }
 
     @And("^I set the following parameters for UPRN$")

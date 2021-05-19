@@ -10,6 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import cucumber.api.java.en.When;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
+import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -27,19 +28,23 @@ public class Random {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri = "https://ai-accp-tests-ai-api.ai.census-gcp.onsdigital.uk/addresses/random";
-    private String username = "rhuser";
-    private String password = "]K:7m:yY";
+    private String uri_random = API.baseUri + "addresses/random";
+    private String username = API.username;
+    private String password = API.password;
+    private String bearer = API.bearer;
+
 
     @Given("^I setup GET for random address$")
     public void iSetupGETForRandomAddress() throws Throwable {
         builder = new RequestSpecBuilder();
-        builder.setBaseUri(uri);
+        builder.setBaseUri(uri_random);
         builder.setContentType(ContentType.JSON);
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName(username);
-        authenticationScheme.setPassword(password);
-        builder.setAuth(authenticationScheme);
+        //PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
+        //authenticationScheme.setAccessToken(bearer);
+          PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
+          authenticationScheme.setUserName(username);
+          authenticationScheme.setPassword(password);
+         builder.setAuth(authenticationScheme);
     }
 
     @And("^I set parameters for random address search$")
