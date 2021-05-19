@@ -27,11 +27,10 @@ public class Addresses {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses";
-    private String username = "rhuser";
-    private String password = "]K:7m:yY";
- //   private String uri = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/addresses";
-    private String bearer = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.Nz6E8h2viXnOk7ScT3igfTiM5ITL0whOnyjvuZusxi4";
+    private String uri = API.baseUri + "addresses";
+    private String username = API.username;
+    private String password = API.password;
+    private String bearer = API.bearer;
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {

@@ -21,6 +21,7 @@ import org.hamcrest.Matchers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.path.json.JsonPath.from;
@@ -28,6 +29,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 // TODO - static methods not possible?
 public class API {
+
+    public static final String baseUri = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/";
+ //   public static final String baseUri = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/";
+    public static final String authMethod = "basic";
+   //  public static final String authMethod = "bearer";
+    public static final String uri = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses";
+    public static final String username = "rhuser";
+   // the next two fields must have dummy values in GitHub
+    public static final String password = "dummy";
+    public static final String bearer = "dummy";
 
    // TODO: does java do by ref?
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {

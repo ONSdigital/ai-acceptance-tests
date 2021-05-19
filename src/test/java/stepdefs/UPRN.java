@@ -28,11 +28,10 @@ public class UPRN {
     private ResponseOptions<Response> response; // TODO: base class
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri_uprn = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses/uprn";
-    //private String uri_uprn = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/addresses/uprn";
-    private String username = "rhuser";
-    private String password = "]K:7m:yY";
-    private String bearer = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.Nz6E8h2viXnOk7ScT3igfTiM5ITL0whOnyjvuZusxi4";
+    private String uri_uprn = API.baseUri + "addresses/uprn";
+    private String username = API.username;
+    private String password = API.password;
+    private String bearer = API.bearer;
 
     @Given("^I setup GET for UPRN$")
     public void i_setup_GET() throws Throwable {

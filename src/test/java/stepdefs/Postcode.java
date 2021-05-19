@@ -28,12 +28,10 @@ public class Postcode {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri_pc = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/addresses/rh/postcode";
-    //private String uri_pc = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/addresses/postcode";
-    private String username = "rhuser";
-    private String password = "]K:7m:yY";
-    private String bearer = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.Nz6E8h2viXnOk7ScT3igfTiM5ITL0whOnyjvuZusxi4";
-
+    private String uri_pc = API.baseUri + "addresses/postcode";
+    private String username = API.username;
+    private String password = API.password;
+    private String bearer = API.bearer;
 
     @Given("^the user defines GET for postcode with these parameters$")
     public void the_user_defines_get_for_postcode_with_these_parameters(DataTable dataTable) throws Throwable {
