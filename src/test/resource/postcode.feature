@@ -5,11 +5,6 @@ Feature: addresses/postcode
       | param  | value        |
       | limit  | 200          |
     When the user performs GET for postcode "PO8 9YD"
-#    Then the postcode results should contain these UPRNs
-#      | index | uprn         |
-#      | 1     | 100060291782 |
-#      | 2     | 100060291783 |
-#      | 3     | 100060291784 |
     Then the postcode results should contain all these UPRNs in any address
       | 100060291782 |
       | 100060291783 |

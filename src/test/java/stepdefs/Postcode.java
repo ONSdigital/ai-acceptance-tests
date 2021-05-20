@@ -45,7 +45,6 @@ public class Postcode {
           authenticationScheme.setPassword(password);
         builder.setAuth(authenticationScheme);
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-        //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
@@ -59,27 +58,6 @@ public class Postcode {
         boolean found = api.classificationCodeFound(classificationCodes, response);
         assertThat(found, Matchers.equalTo(false));
     }
- /*   @Given("^I setup GET for postcode$")
-    public void i_setup_GET_for_postcode() throws Throwable {
-        builder = new RequestSpecBuilder();
-        builder.setBaseUri(uri_pc);
-        builder.setContentType(ContentType.JSON);
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName("allamr");
-        authenticationScheme.setPassword("N3wport@1225");
-        builder.setAuth(authenticationScheme);
-    }
-
-    @And("^I set the following postcode search parameters$")
-    public void iSetTheFollowingPostcodeSearchParameters(DataTable dataTable) {
-        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-        //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
-        for (int param=0; param < data.size(); param++) {
-            builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
-        }
-        RequestSpecification requestSpec = builder.build();
-        spec = given().spec(requestSpec);
-    }*/
 
     @When("^the user performs GET for postcode \"([^\"]*)\"$")
     public void the_user_performs_get_for_postcode(String postCode) throws Throwable {

@@ -1,31 +1,11 @@
 package stepdefs;
 
 import cucumber.api.DataTable;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import gherkin.deps.com.google.gson.JsonArray;
-import gherkin.deps.com.google.gson.JsonElement;
-import gherkin.deps.com.google.gson.JsonObject;
-import gherkin.deps.com.google.gson.JsonParser;
-import gherkin.deps.com.google.gson.stream.JsonReader;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import io.restassured.response.ResponseOptions;
-import io.restassured.specification.RequestSpecification;
-import org.hamcrest.Matchers;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-
-import static io.restassured.RestAssured.given;
-import static io.restassured.path.json.JsonPath.from;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 // TODO - static methods not possible?
 public class API {
@@ -36,10 +16,9 @@ public class API {
    //  public static final String authMethod = "bearer";
     public static final String username = "rhuser";
    // the next two fields must have dummy values in GitHub
-    public static final String password = "dummy";
-    public static final String bearer = "dummy";
+ //   public static final String password = "dummy";
+ //   public static final String bearer = "dummy";
 
-   // TODO: does java do by ref?
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
 
@@ -66,14 +45,6 @@ public class API {
         return true;
     }
 
-//    public int numAddresses(ResponseOptions<Response> response)
-//    {
-//        int limit = Integer.parseInt(response.getBody().jsonPath().get("response.limit").toString());
-//        int total = Integer.parseInt(response.getBody().jsonPath().get("response.total").toString());
-//        int numAddresses = limit < total ? limit : total;
-//        return numAddresses;
-//    }
-
     public int numAddresses(ResponseOptions<Response> response)
     {
         List<String> addresses = response.getBody().jsonPath().getList("response.addresses");
@@ -98,13 +69,11 @@ public class API {
 
     public boolean allUprnsFound(DataTable uprns, ResponseOptions<Response> response) {
         List<String> uprn =  uprns.asList(String.class);
-        //uprn.stream().filter(u->uprnFound(uprn.get(u), response)).findFirst().equals(false);
         for (int u = 0; u < uprn.size(); u++)
         {
             if (uprnFound(uprn.get(u), response) == false)
                 return false;
         }
-        // do I need to check the position in list?
         return true;
     }
 

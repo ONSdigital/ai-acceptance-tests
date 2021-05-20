@@ -5,17 +5,13 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.restassured.RestAssured;
 import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.config.HttpClientConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.hamcrest.Matchers;
 
 import java.io.File;
@@ -52,8 +48,6 @@ public class Bulk {
     @And("^I set parameters for bulk addresses search$")
     public void iSetParametersForBulkAddressesSearch(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
-        //TODO: upgrade java to enable these:
-        //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
@@ -63,7 +57,6 @@ public class Bulk {
 
     @When("^I perform POST for bulk addresses$")
     public void iPerformPostForBulkAddress() throws Throwable {
-        // Creating a File instance
         File jsonDataInFile = new File("src/test/resources/bulktest.json");
         spec.body(jsonDataInFile);
         spec.contentType("application/json");
