@@ -50,7 +50,6 @@ public class UPRN {
     @And("^I set the following parameters for UPRN$")
     public void iSetTheFollowingParametersForUPRN(DataTable dataTable) {
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-        //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
@@ -74,22 +73,4 @@ public class UPRN {
         assertThat((response.getBody().jsonPath().get("status.code")).toString(), equalTo(raw.get(1).get(1)));
         assertThat((response.getBody().jsonPath().get("status.message")).toString(), equalTo(raw.get(2).get(1)));
     }
-  /*  @Given("^I perform get operation for uprn  \"([^\"]*)\"$")
-    public void iPerformGetOperationForUprn(String arg0) throws Throwable {
-        RequestSpecBuilder builder = new RequestSpecBuilder();
-        //builder.setBaseUri("http://localhost:9001/addresses/uprn");
-        builder.setBaseUri(uri_uprn);
-        builder.setContentType(ContentType.JSON);
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName("allamr");
-        authenticationScheme.setPassword("N3wport@1225");
-        builder.setAuth(authenticationScheme);
-        RequestSpecification requestSpec = builder.build();
-        spec = given().spec(requestSpec);
-    }*/
-
- /*   @And("^I perform GET for uprn \"([^\"]*)\"$")
-    public void iPerformGETForUprn(String uprn) throws Throwable {
-        response = spec.get(new URI(uprn));
-    }*/
 }
