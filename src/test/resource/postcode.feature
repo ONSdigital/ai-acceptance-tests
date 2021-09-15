@@ -144,10 +144,7 @@ Feature: addresses/postcode
       | limit      | 200   |
       | historical | true  |
     When the user performs GET for postcode "AB12 9FH"
-    Then the postcode results should contain these UPRNs at positions
-      | index | uprn     |
-      | 1     | 99999999 |
-    # what postcode should results show? - old SO2 7BR or SO19 7BR?
+    Then there should be 0 addresses
 
   # need the postcode of a residence which no longer exists
  Scenario: Historical - Address no longer exists
@@ -155,19 +152,8 @@ Feature: addresses/postcode
      | param      | value |
      | limit      | 200   |
      | historical | true  |
-   When the user performs GET for postcode "xxx xxx"
-   Then the postcode results should contain these UPRNs at positions
-     | index | uprn     |
-     | 1     | 99999999 |
-
-#   Scenario:
-#     Given the user defines GET for postcode with these parameters
-#       | param      | value |
-#       | limit      | 200   |
-#       | historical | true  |
-#     When the user performs GET for postcode "SO2 7BR"
-#     Then the postcode results should include these UPRNs
-#   "99999999"
+   When the user performs GET for postcode "AB12 9FH"
+   Then there should be 0 addresses
 
     # need example
   Scenario: Auxiliary Index
@@ -196,9 +182,8 @@ Feature: addresses/postcode
       | wboost | 1     |
       | sboost | 1     |
     When the user performs GET for postcode "TD9 0TU"
-    Then there should be 1 addresses
+    Then there should be 2 addresses
     Then the first 1 addresses should have countryCode "S"
-    #Then the first 1 addresses should not have countryCode "E"
 
   Scenario: Exclude country E for postcode with 2 addresses, one in S, one in E.
     Given the user defines GET for postcode with these parameters
@@ -208,4 +193,4 @@ Feature: addresses/postcode
       | wboost | 1     |
       | sboost | 1     |
     When the user performs GET for postcode "PO8 9YD"
-    Then there should be 38 addresses
+    Then there should be 42 addresses

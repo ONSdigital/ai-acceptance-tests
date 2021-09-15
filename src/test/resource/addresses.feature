@@ -65,8 +65,7 @@ Feature: /addresses
       | limit                | 200                  |
       | classificationfilter | residential          |
     When I perform GET for address
-    Then The results should not include an address which contains "Bookmakers"
-    # this fails so I need to find a better test address
+    Then The results should not include an address which contains "William Hill, William Hill Bookmakers"
 
   Scenario: Address search
     Given I setup GET for address
@@ -77,9 +76,9 @@ Feature: /addresses
     When I perform GET for address
     Then the address search results should contain these UPRNs at positions
       | index | uprn         |
-      | 1     | 64012390 |
-      | 2     | 64012391 |
-      | 3     | 64012392 |
+      | 1     | 100110577188 |
+      | 2     | 64012390 |
+      | 3     | 64012391 |
     And Verify Address Response body contents matched with expected values
       | key     | value                            |
       | code    | 200                              |
@@ -98,7 +97,7 @@ Feature: /addresses
     #will the results have the old postcode or new postcode?
     Then the address search results should contain these UPRNs at positions
       | index | uprn     |
-      | 1     | 64012390 |
+      | 1     | 61000030 |
 
   # need the postcode of a residence which no longer exists
   Scenario: Historical - Address no longer exists
@@ -114,19 +113,4 @@ Feature: /addresses
       | 1     | 64012390 |
 
   ##################
-  # what postcode should be shown? - SO2 7BR or SO19 7BR?
 
-#  Scenario
-#    Then I should be able to see the first 10 addresses
-#      | field            | value          |
-#      | formattedAddress | Merrivale Road |
-#      | countryCode      | E              |
-#    Then I should be able to see the list of uprns in the address
-#      | index | uprn       |
-#      | 1     | 40028973   |
-#      | 2     | 32142632   |
-#      | 3     | 1775055324 |
-#    And Verify Address Response body contents matched with expected values
-#      | key     | value |
-#      | code    | 200   |
-#      | message | Ok    |

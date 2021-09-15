@@ -29,8 +29,6 @@ public class UPRN {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_uprn = API.baseUri + "addresses/uprn";
-    private String username = API.username;
-    private String password = API.password;
     private String bearer = API.bearer;
 
     @Given("^I setup GET for UPRN$")
@@ -38,11 +36,8 @@ public class UPRN {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_uprn);
         builder.setContentType(ContentType.JSON);
-      //  PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-      //  authenticationScheme.setAccessToken(bearer);
-        PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-        authenticationScheme.setUserName(username);
-        authenticationScheme.setPassword(password);
+        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
+        authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
 
     }
@@ -50,6 +45,7 @@ public class UPRN {
     @And("^I set the following parameters for UPRN$")
     public void iSetTheFollowingParametersForUPRN(DataTable dataTable) {
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
+   //     builder.addQueryParam("epoch","84");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
