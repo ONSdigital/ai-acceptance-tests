@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
+import static java.lang.Thread.sleep;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -28,8 +29,6 @@ public class Addresses {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri = API.baseUri + "addresses";
-    private String username = API.username;
-    private String password = API.password;
     private String bearer = API.bearer;
 
     @Given("^I setup GET for address$")
@@ -37,21 +36,18 @@ public class Addresses {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
-     //   PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-      //  authenticationScheme.setAccessToken(bearer);
-          PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-          authenticationScheme.setUserName(username);
-          authenticationScheme.setPassword(password);
+        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
+        authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
     }
 
     @And("^I set parameters for address search$")
     public void i_set_parameters_for_address_search(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
+     //   builder.addQueryParam("epoch","84");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
-        //data.forEach(param->builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value")));
         RequestSpecification requestSpec = builder.build();
         spec = given().spec(requestSpec);
     }
@@ -97,12 +93,13 @@ public class Addresses {
     }
 
     @Then("^the address search results should contain these UPRNs at positions$")
-    public void the_address_search_results_should_contain_these_uprns_at_positions(DataTable dataTable) {
+    public void the_address_search_results_should_contain_these_uprns_at_positions(DataTable dataTable) throws Throwable {
         JsonPath jsonPath = response.getBody().jsonPath();
         List<Map<String, String>> uprns =  dataTable.asMaps(String.class, String.class);
         for (int uprn = 0; uprn < uprns.size(); uprn++) {
             // find numAddresses in results then assert that numAddresses >= uprn or will get null error
             API api = new API();
+            sleep(1000);
             assertThat(api.numAddresses(response), Matchers.greaterThan(0));
             assertThat(api.numAddresses(response), Matchers.greaterThan(uprn));
             String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);

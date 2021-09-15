@@ -27,8 +27,6 @@ public class Bulk {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_bulk = API.bulkUri + "bulk";
-    private String username = API.username;
-    private String password = API.password;
     private String bearer = API.bearer;
 
 
@@ -39,10 +37,7 @@ public class Bulk {
         builder.setContentType(ContentType.JSON);
         PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
         authenticationScheme.setAccessToken(bearer);
-//          PreemptiveBasicAuthScheme authenticationScheme = new PreemptiveBasicAuthScheme();
-//          authenticationScheme.setUserName(username);
-//          authenticationScheme.setPassword(password);
-         builder.setAuth(authenticationScheme);
+        builder.setAuth(authenticationScheme);
     }
 
     @And("^I set parameters for bulk addresses search$")

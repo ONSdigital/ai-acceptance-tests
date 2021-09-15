@@ -10,16 +10,13 @@ import java.util.Map;
 // TODO - static methods not possible?
 public class API {
 
-    public static final String baseUri = "https://whitelodge-ai-api.census-gcp.onsdigital.uk/";
- //   public static final String bulkUri = "https://initial-test-bulk-3.aims.gcp.onsdigital.uk/";
-    public static final String bulkUri = "https://initial-test-bulk-2.aims.gcp.onsdigital.uk/";
-    public static final String authMethod = "basic";
-   //  public static final String authMethod = "bearer";
-    public static final String username = "rhuser";
-   // the next two fields must have dummy values in GitHub
- //   public static final String password = "dummy";
- //   public static final String bearer = "dummy";
-      public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
+    public static final String baseUri = "https://initial-test-bulk-1.aims.gcp.onsdigital.uk/";
+    public static final String bulkUri = "https://initial-test-bulk-1.aims.gcp.onsdigital.uk/";
+    public static final String authMethod = "bearer";
+   // password / token fields must have dummy values in GitHub
+    public static final String bearer = "dummy";
+
+    public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
 
         for (int nAddress = 0; nAddress < numAddresses(response); nAddress++) {
