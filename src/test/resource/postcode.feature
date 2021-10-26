@@ -182,10 +182,10 @@ Feature: addresses/postcode
       | wboost | 1     |
       | sboost | 1     |
     When the user performs GET for postcode "TD9 0TU"
-    Then there should be 2 addresses
+    Then there should be 1 addresses
     Then the first 1 addresses should have countryCode "S"
 
-  Scenario: Exclude country E for postcode with 2 addresses, one in S, one in E.
+  Scenario: Exclude no countries (except country code J) for postcode with 38 addresses.
     Given the user defines GET for postcode with these parameters
       | param  | value |
       | nboost | 1     |
@@ -193,4 +193,4 @@ Feature: addresses/postcode
       | wboost | 1     |
       | sboost | 1     |
     When the user performs GET for postcode "PO8 9YD"
-    Then there should be 42 addresses
+    Then there should be 38 addresses
