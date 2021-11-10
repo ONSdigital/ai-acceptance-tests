@@ -33,6 +33,7 @@ public class Addresses {
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
+  //      System.out.println(bearer);
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
@@ -44,7 +45,7 @@ public class Addresses {
     @And("^I set parameters for address search$")
     public void i_set_parameters_for_address_search(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
-        builder.addQueryParam("epoch","85");
+        builder.addQueryParam("epoch","87");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
