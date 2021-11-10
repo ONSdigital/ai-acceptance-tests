@@ -6,7 +6,7 @@ Feature: /addresses/bulk
       | param                | value |
       | historical           | true  |
       | limitperaddress      | 3     |
-      | epoch                | 84    |
+      | epoch                | 87    |
       | matchthreshold       | 10    |
     When I perform POST for bulk addresses
     Then The bulk response should return in 160000 milliseconds
