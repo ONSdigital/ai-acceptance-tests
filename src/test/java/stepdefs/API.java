@@ -16,7 +16,7 @@ public class API {
     public static final String bulkUri = "https://34.117.74.203/";
     public static final String authMethod = "bearer";
    // password / token fields must have dummy values in GitHub
-   public static final String bearer = System.getenv().getOrDefault("BEARER","token not set");
+   public static final String bearer = System.getenv().getOrDefault("token","token not set");
 
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
