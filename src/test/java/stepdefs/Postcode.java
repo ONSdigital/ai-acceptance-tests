@@ -40,6 +40,7 @@ public class Postcode {
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
+        builder.addHeader("Expect", "100-continue");
         builder.addQueryParam("epoch","87");
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         for (int param=0; param < data.size(); param++) {
