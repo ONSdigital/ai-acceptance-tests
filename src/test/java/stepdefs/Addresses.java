@@ -14,10 +14,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
-//import org.apache.http.conn.ssl.NoopHostnameVerifier;
-//import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-//import org.apache.http.conn.ssl.SSLContexts;
-//import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.hamcrest.Matchers;
 
 import java.util.List;
@@ -44,7 +40,7 @@ public class Addresses {
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
-        System.out.println(bearer);
+     //   System.out.println(bearer);
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
