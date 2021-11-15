@@ -39,6 +39,7 @@ public class Bulk {
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
+        builder.addHeader("Expect", "100-continue");
     }
 
     @And("^I set parameters for bulk addresses search$")
