@@ -38,6 +38,7 @@ public class Bulk {
         PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
+        builder.setRelaxedHTTPSValidation();
     }
 
     @And("^I set parameters for bulk addresses search$")

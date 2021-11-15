@@ -39,7 +39,7 @@ public class UPRN {
         PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
-
+        builder.setRelaxedHTTPSValidation();
     }
 
     @And("^I set the following parameters for UPRN$")

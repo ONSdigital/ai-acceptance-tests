@@ -14,6 +14,10 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
+//import org.apache.http.conn.ssl.NoopHostnameVerifier;
+//import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+//import org.apache.http.conn.ssl.SSLContexts;
+//import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.hamcrest.Matchers;
 
 import java.util.List;
@@ -31,6 +35,13 @@ public class Addresses {
     private String uri = API.baseUri + "addresses";
     private String bearer = API.bearer;
 
+  //  SSLConnectionSocketFactory scsf = SSLConnectionSocketFactory(
+  //          SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build(),
+  //          NoopHostnameVerifier.INSTANCE);
+  //  httpclient = HttpClients.custom().setSSLSocketFactory(scsf).build()
+
+ //   request.config(RestAssured.config().sslConfig(new SSLConfig().allowAllHostnames().relaxedHTTPSValidation()));
+
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
         System.out.println(bearer);
@@ -40,6 +51,7 @@ public class Addresses {
         PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
+        builder.setRelaxedHTTPSValidation();
     }
 
     @And("^I set parameters for address search$")
