@@ -7,7 +7,6 @@ import io.restassured.response.ResponseOptions;
 import java.util.List;
 import java.util.Map;
 
-// TODO - static methods not possible?
 public class API {
 
 //    public static final String baseUri = "https://initial-test-bulk-1.aims.gcp.onsdigital.uk/";
