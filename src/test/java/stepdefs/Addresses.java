@@ -31,13 +31,6 @@ public class Addresses {
     private String uri = API.baseUri + "addresses";
     private String bearer = API.bearer;
 
-  //  SSLConnectionSocketFactory scsf = SSLConnectionSocketFactory(
-  //          SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build(),
-  //          NoopHostnameVerifier.INSTANCE);
-  //  httpclient = HttpClients.custom().setSSLSocketFactory(scsf).build()
-
- //   request.config(RestAssured.config().sslConfig(new SSLConfig().allowAllHostnames().relaxedHTTPSValidation()));
-
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
      //   System.out.println(bearer);
