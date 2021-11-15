@@ -39,6 +39,7 @@ public class Postcode {
         PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
+        builder.setRelaxedHTTPSValidation();
         builder.addQueryParam("epoch","87");
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         for (int param=0; param < data.size(); param++) {
