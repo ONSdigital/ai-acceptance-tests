@@ -11,8 +11,8 @@ public class API {
 
 //    public static final String baseUri = "https://initial-test-bulk-1.aims.gcp.onsdigital.uk/";
 //    public static final String bulkUri = "https://initial-test-bulk-1.aims.gcp.onsdigital.uk/";
-    public static final String baseUri = "https://34.117.74.203";
-    public static final String bulkUri = "https://34.117.74.203";
+    public static final String baseUri = "https://34.117.74.203/";
+    public static final String bulkUri = "https://34.117.74.203/";
     public static final String authMethod = "bearer";
    // password / token fields must have dummy values in GitHub
    public static final String bearer = System.getenv().getOrDefault("token","token not set");
