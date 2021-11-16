@@ -40,7 +40,7 @@ public class UPRN {
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
-        builder.addHeader("Expect", "100-continue");
+       // builder.addHeader("Expect", "100-continue");
     }
 
     @And("^I set the following parameters for UPRN$")
