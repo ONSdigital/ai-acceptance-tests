@@ -37,7 +37,7 @@ public class Addresses {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
-        builder.setUrlEncodingEnabled(false);
+       // builder.setUrlEncodingEnabled(false);
         PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
