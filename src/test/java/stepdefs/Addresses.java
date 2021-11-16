@@ -58,7 +58,7 @@ public class Addresses {
     @When("^I perform GET for address$")
     public void iPerformGetForAddress() throws Throwable {
         response = spec.get();
-        System.out.println("response = " + response);
+        System.out.println("response = " + response.getBody().asString());
     }
 
     @Then("^The first address should contain \"([^\"]*)\"$")
