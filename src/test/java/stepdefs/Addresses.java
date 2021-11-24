@@ -29,7 +29,7 @@ public class Addresses {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri = API.baseUri + "addresses";
-    private String bearer = API.bearer;
+    private String bearer = API.bearer.replace("token: ","");
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {

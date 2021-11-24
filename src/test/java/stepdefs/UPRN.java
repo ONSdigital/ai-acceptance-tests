@@ -29,7 +29,7 @@ public class UPRN {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_uprn = API.baseUri + "addresses/uprn";
-    private String bearer = API.bearer;
+    private String bearer = API.bearer.replace("token: ","");
 
     @Given("^I setup GET for UPRN$")
     public void i_setup_GET() throws Throwable {

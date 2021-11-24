@@ -27,7 +27,7 @@ public class Bulk {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_bulk = API.bulkUri + "bulk";
-    private String bearer = API.bearer;
+    private String bearer = API.bearer.replace("token: ","");
 
 
     @Given("^I setup POST for bulk addresses$")
