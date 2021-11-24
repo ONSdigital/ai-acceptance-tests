@@ -31,7 +31,7 @@ public class Random {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_random = API.baseUri + "addresses/random";
-    private String bearer = API.bearer;
+    private String bearer = API.bearer.replace("token: ","");
 
 
     @Given("^I setup GET for random address$")
