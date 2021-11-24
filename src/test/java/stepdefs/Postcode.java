@@ -73,7 +73,7 @@ public class Postcode {
     @Then("^I should be able to see the list of addresses in the postcode$")
     public void iShouldBeAbleToSeeTheListOfAddressesInThePostcode() {
         JsonPath jsonPath = response.getBody().jsonPath();
-        System.out.println(response.getBody().prettyPrint());
+//        System.out.println(response.getBody().prettyPrint());
         assertThat(jsonPath.get("response.addresses.formattedAddress[0]"),
                 Matchers.<Object>equalTo("6473FF-6623JJ, The Building Name, A Training Centre, 56HH-7755OP And Another Street Descriptor, Locality Xyz, Town B, KL3 7GQ"));
     }
