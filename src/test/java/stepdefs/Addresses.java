@@ -33,7 +33,7 @@ public class Addresses {
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
-        System.out.println(bearer);
+  //      System.out.println(bearer);
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
@@ -59,7 +59,7 @@ public class Addresses {
     @When("^I perform GET for address$")
     public void iPerformGetForAddress() throws Throwable {
         response = spec.get();
-        System.out.println("response = " + response.getBody().asString());
+   //     System.out.println("response = " + response.getBody().asString());
     }
 
     @Then("^The first address should contain \"([^\"]*)\"$")
