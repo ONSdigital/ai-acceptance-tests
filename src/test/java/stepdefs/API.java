@@ -9,13 +9,14 @@ import java.util.Map;
 
 public class API {
 
-//    public static final String baseUri = "https://initial-test-bulk-1.aims.gcp.onsdigital.uk/";
-//    public static final String bulkUri = "https://initial-test-bulk-1.aims.gcp.onsdigital.uk/";
-    public static final String baseUri = "https://34.117.74.203/";
-    public static final String bulkUri = "https://34.117.74.203/";
+   // public static final String baseUri = "https://analysis-prod-aims-bulk-1.gcp.onsdigital.uk/";
+   // public static final String bulkUri = "https://analysis-prod-aims-bulk-1.gcp.onsdigital.uk/";
+    public static final String baseUri = "https://34.98.78.214/";
+    public static final String bulkUri = "https://34.98.78.214/";
     public static final String authMethod = "bearer";
    // password / token fields must have dummy values in GitHub
-   public static final String bearer = System.getenv().getOrDefault("token","token not set");
+    public static final String bearer = System.getenv().getOrDefault("token","token not set");
+ //   public static final String bearer = "paste key here for local run";
 
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
