@@ -14,7 +14,7 @@ public class API {
     public static final String authMethod = "bearer";
    // password / token fields must have dummy values in GitHub
     public static final String bearer = System.getenv().getOrDefault("token","token not set");
- //   public static final String bearer = "paste key here for local run";
+ //   public static final String bearer = "key here for local run";
 
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
@@ -94,7 +94,7 @@ public class API {
         List<String> addresses = response.getBody().jsonPath().getList("response.addresses");
         if (addresses.size() >= numTopAddressesToSearch) {
             for (int nAddress = 0; nAddress < numTopAddressesToSearch; nAddress++) {
-                String countryPath = String.format("response.addresses[%d].census.countryCode", nAddress);
+                String countryPath = String.format("response.addresses[%d].countryCode", nAddress);
                 String countryResult = response.getBody().jsonPath().get(countryPath).toString();
                 if (!countryCode.contentEquals(countryResult))
                     return false;

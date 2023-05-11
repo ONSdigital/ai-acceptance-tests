@@ -46,7 +46,7 @@ public class UPRN {
     @And("^I set the following parameters for UPRN$")
     public void iSetTheFollowingParametersForUPRN(DataTable dataTable) {
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-        builder.addQueryParam("epoch","89");
+        builder.addQueryParam("epoch","99");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
