@@ -9,10 +9,8 @@ import java.util.Map;
 
 public class API {
 
-//    public static final String baseUri = "https://analysis-prod-aims-bulk-1.gcp.onsdigital.uk/";
-//    public static final String bulkUri = "https://analysis-prod-aims-bulk-1.gcp.onsdigital.uk/";
-    public static final String baseUri = "https://35.227.235.201/";
-    public static final String bulkUri = "https://35.227.235.201/";
+    public static final String baseUri = "https://analysis-prod-aims-bulk-1.gcp.onsdigital.uk/";
+    public static final String bulkUri = "https://analysis-prod-aims-bulk-1.gcp.onsdigital.uk/";
     public static final String authMethod = "bearer";
    // password / token fields must have dummy values in GitHub
     public static final String bearer = System.getenv().getOrDefault("token","token not set");
