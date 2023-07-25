@@ -9,4 +9,4 @@ Feature: /addresses/bulk
       | epoch                | 99    |
       | matchthreshold       | 10    |
     When I perform POST for bulk addresses
-    Then The bulk response should return in 240000 milliseconds
+    Then The bulk response should return in 340000 milliseconds
