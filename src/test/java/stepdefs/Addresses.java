@@ -48,7 +48,7 @@ public class Addresses {
     @And("^I set parameters for address search$")
     public void i_set_parameters_for_address_search(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
-        builder.addQueryParam("epoch","99");
+        builder.addQueryParam("epoch","101");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
