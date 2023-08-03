@@ -41,7 +41,7 @@ public class Postcode {
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
     //    builder.addHeader("Expect", "100-continue");
-        builder.addQueryParam("epoch","99");
+        builder.addQueryParam("epoch","101");
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
