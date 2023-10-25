@@ -49,7 +49,7 @@ public class Random {
     @And("^I set parameters for random address search$")
     public void iSetParametersForRandomAddressSearch(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
-        builder.addQueryParam("epoch","101");
+        builder.addQueryParam("epoch","103");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
