@@ -33,7 +33,7 @@ public class Addresses {
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
-  //      System.out.println(bearer);
+        System.out.println(bearer);
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
