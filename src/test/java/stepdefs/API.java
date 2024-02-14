@@ -13,7 +13,7 @@ public class API {
     public static final String bulkUri = "https://analysis-prod-aims-bulk-2.gcp.onsdigital.uk/";
     public static final String authMethod = "bearer";
    // password / token fields must have dummy values in GitHub
-    public static final String bearer = System.getenv().getOrDefault("token","token not set");
+    public static final String bearer = "Bearer " + System.getenv().getOrDefault("token","token not set");
  //   public static final String bearer = "key here for local run";
 
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
