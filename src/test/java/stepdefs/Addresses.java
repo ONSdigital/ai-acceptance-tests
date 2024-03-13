@@ -33,22 +33,18 @@ public class Addresses {
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
-        System.out.println(bearer);
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
-       // builder.setUrlEncodingEnabled(false);
         PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
-   //     builder.addHeader("Expect", "100-continue");
     }
 
     @And("^I set parameters for address search$")
     public void i_set_parameters_for_address_search(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
- //       builder.addQueryParam("epoch","106");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
@@ -59,7 +55,6 @@ public class Addresses {
     @When("^I perform GET for address$")
     public void iPerformGetForAddress() throws Throwable {
         response = spec.get();
-   //     System.out.println("response = " + response.getBody().asString());
     }
 
     @Then("^The first address should contain \"([^\"]*)\"$")

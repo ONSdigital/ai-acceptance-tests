@@ -40,8 +40,6 @@ public class Postcode {
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
-    //    builder.addHeader("Expect", "100-continue");
- //       builder.addQueryParam("epoch","106");
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
@@ -73,7 +71,6 @@ public class Postcode {
     @Then("^I should be able to see the list of addresses in the postcode$")
     public void iShouldBeAbleToSeeTheListOfAddressesInThePostcode() {
         JsonPath jsonPath = response.getBody().jsonPath();
-//        System.out.println(response.getBody().prettyPrint());
         assertThat(jsonPath.get("response.addresses.formattedAddress[0]"),
                 Matchers.<Object>equalTo("6473FF-6623JJ, The Building Name, A Training Centre, 56HH-7755OP And Another Street Descriptor, Locality Xyz, Town B, KL3 7GQ"));
     }
