@@ -40,13 +40,11 @@ public class UPRN {
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
-       // builder.addHeader("Expect", "100-continue");
     }
 
     @And("^I set the following parameters for UPRN$")
     public void iSetTheFollowingParametersForUPRN(DataTable dataTable) {
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
- //       builder.addQueryParam("epoch","106");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }

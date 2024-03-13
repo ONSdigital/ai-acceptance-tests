@@ -43,13 +43,11 @@ public class Random {
         authenticationScheme.setAccessToken(bearer);
         builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
-   //     builder.addHeader("Expect", "100-continue");
     }
 
     @And("^I set parameters for random address search$")
     public void iSetParametersForRandomAddressSearch(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
- //       builder.addQueryParam("epoch","106");
         for (int param=0; param < data.size(); param++) {
             builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
         }
