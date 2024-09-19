@@ -102,51 +102,6 @@
 					"response": []
 				},
 				{
-					"name": "1.2 rh/partial Londonderry street name Copy",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{pwd}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{user}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/addresses/rh/partial?input=duncreggan Londonderry&limit=200",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"addresses",
-								"rh",
-								"partial"
-							],
-							"query": [
-								{
-									"key": "input",
-									"value": "duncreggan Londonderry"
-								},
-								{
-									"key": "limit",
-									"value": "200"
-								}
-							]
-						},
-						"description": "total: 159\r\nwith Duncreggan in building name, then in the road name. Has Derry address versions nearer top of list, then repeats addresses with Londonderry version."
-					},
-					"response": []
-				},
-				{
 					"name": "2. eq/ partial Londonderry/Derry building name",
 					"event": [
 						{
