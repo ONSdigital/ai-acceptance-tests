@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "5516a0e0-9d07-4902-b10f-00f6e8eff332",
-		"name": "AIMS CC&RH Acceptance Tests PARTIAL & AUX",
+		"name": "AIMS CC Acceptance Tests PARTIAL & AUX",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
