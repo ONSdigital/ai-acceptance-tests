@@ -31,25 +31,20 @@ public class Random {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_random = API.baseUri + "addresses/random";
-    private String bearer = API.bearer.replace("token: ","");
-
 
     @Given("^I setup GET for random address$")
     public void iSetupGETForRandomAddress() throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_random);
         builder.setContentType(ContentType.JSON);
-        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-        authenticationScheme.setAccessToken(bearer);
-        builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
     }
 
     @And("^I set parameters for random address search$")
     public void iSetParametersForRandomAddressSearch(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
-        for (int param=0; param < data.size(); param++) {
-            builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
+        for (Map<String, String> datum : data) {
+            builder.addQueryParam(datum.get("param"), datum.get("value"));
         }
         RequestSpecification requestSpec = builder.build();
         spec = given().spec(requestSpec);

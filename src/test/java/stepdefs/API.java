@@ -9,14 +9,8 @@ import java.util.Map;
 
 public class API {
 
-    public static final String baseUri = "https://analysis-prod-aims-bulk-2.gcp.onsdigital.uk/";
-    public static final String bulkUri = "https://analysis-prod-aims-bulk-2.gcp.onsdigital.uk/";
-    public static final String authMethod = "bearer";
-   // password / token fields must have dummy values in GitHub
-    public static final String bearer = System.getenv()
-           .getOrDefault("token","token not set")
-           .replace("Bearer ","");
- //   public static final String bearer = "key here for local run";
+    public static final String baseUri = System.getenv().get("API_URL");
+    public static final String bulkUri = System.getenv().get("API_URL");
 
     public boolean addressStringFound(String addressContents, ResponseOptions<Response> response) throws Throwable {
         JsonPath path = response.getBody().jsonPath();
@@ -25,7 +19,7 @@ public class API {
             String addressPath = String.format("response.addresses[%d].formattedAddress", nAddress);
             String address = path.get(addressPath).toString().toUpperCase();
 
-            if (address.contains(addressContents.toUpperCase()) == true)
+            if (address.contains(addressContents.toUpperCase()))
                 return true;
         }
         return false;
@@ -38,7 +32,7 @@ public class API {
             String addressPath = String.format("response.addresses[%d].formattedAddress", nAddress);
             String address = path.get(addressPath).toString().toUpperCase();
 
-            if (address.contains(addressContents.toUpperCase()) == false)
+            if (!address.contains(addressContents.toUpperCase()))
                 return false;
         }
         return true;
@@ -58,8 +52,8 @@ public class API {
             String classificationPath = String.format("response.addresses[%d].classificationCode", nAddress);
             String classificationCode = response.getBody().jsonPath().get(classificationPath).toString();
 
-            for (int nCode = 0; nCode < codes.size(); nCode++) {
-                if (classificationCode.contentEquals(codes.get(nCode)) == true)
+            for (String code : codes) {
+                if (classificationCode.contentEquals(code))
                     return true;
             }
         }
@@ -68,9 +62,8 @@ public class API {
 
     public boolean allUprnsFound(DataTable uprns, ResponseOptions<Response> response) {
         List<String> uprn =  uprns.asList(String.class);
-        for (int u = 0; u < uprn.size(); u++)
-        {
-            if (uprnFound(uprn.get(u), response) == false)
+        for (String s : uprn) {
+            if (!uprnFound(s, response))
                 return false;
         }
         return true;
@@ -78,13 +71,12 @@ public class API {
 
     public boolean uprnFound(String uprn, ResponseOptions<Response> response)
     {
-        JsonPath path = response.getBody().jsonPath();
         List<String> addresses = response.getBody().jsonPath().getList("response.addresses");
 
         for (int nAddress = 0; nAddress < addresses.size(); nAddress++) {
             String uprnPath = String.format("response.addresses[%d].uprn", nAddress);
             String uprnResult = response.getBody().jsonPath().get(uprnPath).toString();
-            if (uprn.contentEquals(uprnResult) == true)
+            if (uprn.contentEquals(uprnResult))
                 return true;
         }
         return false;
@@ -92,7 +84,6 @@ public class API {
 
     public boolean countryCodeFoundInAllTopNAddresses(int numTopAddressesToSearch,String countryCode, ResponseOptions<Response> response)
     {
-        JsonPath path = response.getBody().jsonPath();
         List<String> addresses = response.getBody().jsonPath().getList("response.addresses");
         if (addresses.size() >= numTopAddressesToSearch) {
             for (int nAddress = 0; nAddress < numTopAddressesToSearch; nAddress++) {
@@ -106,7 +97,6 @@ public class API {
     }
 
     public boolean uprnsAllFoundInCorrectOrder(ResponseOptions<Response> response, DataTable uprnTable) {
-        JsonPath jsonPath = response.getBody().jsonPath();
         List<Map<String, String>> uprns = uprnTable.asMaps(String.class, String.class);
         if (numAddresses(response) == 0 || numAddresses(response) < uprns.size())
             return false;

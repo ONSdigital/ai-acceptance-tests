@@ -27,7 +27,6 @@ public class Bulk {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_bulk = API.bulkUri + "bulk";
-    private String bearer = API.bearer.replace("token: ","");
 
 
     @Given("^I setup POST for bulk addresses$")
@@ -35,9 +34,6 @@ public class Bulk {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_bulk);
         builder.setContentType(ContentType.JSON);
-        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-        authenticationScheme.setAccessToken(bearer);
-        builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
     }
 

@@ -29,16 +29,12 @@ public class UPRN {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_uprn = API.baseUri + "addresses/uprn";
-    private String bearer = API.bearer.replace("token: ","");
 
     @Given("^I setup GET for UPRN$")
     public void i_setup_GET() throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_uprn);
         builder.setContentType(ContentType.JSON);
-        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-        authenticationScheme.setAccessToken(bearer);
-        builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
     }
 

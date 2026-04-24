@@ -29,16 +29,12 @@ public class Postcode {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri_pc = API.baseUri + "addresses/postcode";
-    private String bearer = API.bearer.replace("token: ","");
 
     @Given("^the user defines GET for postcode with these parameters$")
     public void the_user_defines_get_for_postcode_with_these_parameters(DataTable dataTable) throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_pc);
         builder.setContentType(ContentType.JSON);
-        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-        authenticationScheme.setAccessToken(bearer);
-        builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
         for (int param=0; param < data.size(); param++) {

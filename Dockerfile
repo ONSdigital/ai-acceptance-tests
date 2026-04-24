@@ -1,8 +1,8 @@
-FROM maven:3.6.1-jdk-8-alpine AS MAVEN_BUILD
+FROM maven:3.9-eclipse-temurin-17 AS MAVEN_BUILD
 
 COPY ./ ./
 
-ENV BEARER="token here"
+#ENV BEARER="token here"
 
 RUN mvn clean package
 

@@ -29,16 +29,12 @@ public class Addresses {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private String uri = API.baseUri + "addresses";
-    private String bearer = API.bearer.replace("token: ","");
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
-        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-        authenticationScheme.setAccessToken(bearer);
-        builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
     }
 
@@ -141,8 +137,8 @@ public class Addresses {
             String classificationPath = String.format("response.addresses[%d].classificationCode", nAddress);
             String classificationCode = response.getBody().jsonPath().get(classificationPath).toString();
 
-            for (int nCode = 0; nCode < codes.size(); nCode++) {
-                if (classificationCode.contentEquals(codes.get(nCode)))
+            for (String code : codes) {
+                if (classificationCode.contentEquals(code))
                     return true;
             }
         }
