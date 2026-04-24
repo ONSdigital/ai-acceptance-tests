@@ -4,7 +4,7 @@ COPY ./ ./
 
 #ENV BEARER="token here"
 
-RUN mvn clean package
+#RUN mvn clean package
 
 #FROM openjdk:8-jre-alpine3.9
 
