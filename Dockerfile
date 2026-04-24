@@ -11,3 +11,5 @@ COPY ./ ./
 #COPY --from=MAVEN_BUILD /ai-acceptance-tests/target/ai-acceptance-tests-1.0-SNAPSHOT.jar /acceptance.jar
 
 #CMD ["java", "-jar", "/acceptance.jar"]
+
+ENTRYPOINT ["mvn", "test"]
