@@ -1,13 +1,10 @@
 package stepdefs;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -28,7 +25,7 @@ public class Addresses {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri = API.baseUri + "addresses";
+    private final String uri = API.baseUri + "addresses";
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {

@@ -1,21 +1,17 @@
 package stepdefs;
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
-import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
 import org.hamcrest.Matchers;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +24,7 @@ public class Postcode {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri_pc = API.baseUri + "addresses/postcode";
+    private final String uri_pc = API.baseUri + "addresses/postcode";
 
     @Given("^the user defines GET for postcode with these parameters$")
     public void the_user_defines_get_for_postcode_with_these_parameters(DataTable dataTable) throws Throwable {
@@ -37,8 +33,8 @@ public class Postcode {
         builder.setContentType(ContentType.JSON);
         builder.setRelaxedHTTPSValidation();
         List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
-        for (int param=0; param < data.size(); param++) {
-            builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
+        for (Map<String, String> datum : data) {
+            builder.addQueryParam(datum.get("param"), datum.get("value"));
         }
         RequestSpecification requestSpec = builder.build();
         spec = given().spec(requestSpec);
@@ -60,7 +56,6 @@ public class Postcode {
     public void the_postcode_results_should_not_include_uprn(String uprn) throws Throwable {
         API api = new API();
         boolean uprnFound = api.uprnFound(uprn, response);
-        api = null; //
         assertThat(uprnFound, Matchers.equalTo(false));
     }
 

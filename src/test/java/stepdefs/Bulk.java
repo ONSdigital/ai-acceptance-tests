@@ -5,8 +5,6 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -26,7 +24,7 @@ public class Bulk {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri_bulk = API.bulkUri + "bulk";
+    private final String uri_bulk = API.bulkUri + "bulk";
 
 
     @Given("^I setup POST for bulk addresses$")
@@ -40,8 +38,8 @@ public class Bulk {
     @And("^I set parameters for bulk addresses search$")
     public void iSetParametersForBulkAddressesSearch(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
-        for (int param=0; param < data.size(); param++) {
-            builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
+        for (Map<String, String> datum : data) {
+            builder.addQueryParam(datum.get("param"), datum.get("value"));
         }
         RequestSpecification requestSpec = builder.build();
         spec = given().spec(requestSpec);
