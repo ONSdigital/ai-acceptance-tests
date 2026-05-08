@@ -76,9 +76,9 @@ Feature: /addresses
     When I perform GET for address
     Then the address search results should contain these UPRNs at positions
       | index | uprn         |
-      | 1     | 100110577188 |
-      | 2     | 64012390 |
-      | 3     | 64012391 |
+      | 1     | 64012390 |
+      | 2     | 64012391 |
+      | 3     | 64012392 |
     And Verify Address Response body contents matched with expected values
       | key     | value                            |
       | code    | 200                              |
