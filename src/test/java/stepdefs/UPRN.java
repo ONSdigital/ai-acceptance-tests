@@ -23,7 +23,7 @@ public class UPRN {
     private ResponseOptions<Response> response; // TODO: base class
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private final String uri_uprn = API.baseUri + "addresses/uprn";
+    private final String uri_uprn = API.baseUri + "/addresses/uprn";
 
     @Given("^I setup GET for UPRN$")
     public void i_setup_GET() throws Throwable {

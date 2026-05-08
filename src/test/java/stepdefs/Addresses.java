@@ -25,7 +25,7 @@ public class Addresses {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private final String uri = API.baseUri + "addresses";
+    private final String uri = API.baseUri + "/addresses";
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {

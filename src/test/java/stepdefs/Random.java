@@ -26,7 +26,7 @@ public class Random {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private final String uri_random = API.baseUri + "addresses/random";
+    private final String uri_random = API.baseUri + "/addresses/random";
 
     @Given("^I setup GET for random address$")
     public void iSetupGETForRandomAddress() throws Throwable {

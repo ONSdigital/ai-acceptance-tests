@@ -24,7 +24,7 @@ public class Postcode {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private final String uri_pc = API.baseUri + "addresses/postcode";
+    private final String uri_pc = API.baseUri + "/addresses/postcode";
 
     @Given("^the user defines GET for postcode with these parameters$")
     public void the_user_defines_get_for_postcode_with_these_parameters(DataTable dataTable) throws Throwable {

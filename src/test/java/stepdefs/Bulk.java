@@ -24,7 +24,7 @@ public class Bulk {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private final String uri_bulk = API.bulkUri + "bulk";
+    private final String uri_bulk = API.bulkUri + "/bulk";
 
 
     @Given("^I setup POST for bulk addresses$")
