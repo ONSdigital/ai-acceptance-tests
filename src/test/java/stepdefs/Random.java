@@ -1,18 +1,14 @@
 package stepdefs;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
 import static java.lang.Thread.sleep;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 
 import cucumber.api.java.en.When;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -30,26 +26,21 @@ public class Random {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri_random = API.baseUri + "addresses/random";
-    private String bearer = API.bearer.replace("token: ","");
-
+    private final String uri_random = API.baseUri + "/addresses/random";
 
     @Given("^I setup GET for random address$")
     public void iSetupGETForRandomAddress() throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_random);
         builder.setContentType(ContentType.JSON);
-        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-        authenticationScheme.setAccessToken(bearer);
-        builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
     }
 
     @And("^I set parameters for random address search$")
     public void iSetParametersForRandomAddressSearch(DataTable dataTable) throws Throwable {
         List<Map<String, String>> data =  dataTable.asMaps(String.class, String.class);
-        for (int param=0; param < data.size(); param++) {
-            builder.addQueryParam(data.get(param).get("param"), data.get(param).get("value"));
+        for (Map<String, String> datum : data) {
+            builder.addQueryParam(datum.get("param"), datum.get("value"));
         }
         RequestSpecification requestSpec = builder.build();
         spec = given().spec(requestSpec);

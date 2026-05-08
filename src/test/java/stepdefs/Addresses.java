@@ -1,13 +1,10 @@
 package stepdefs;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.restassured.authentication.PreemptiveBasicAuthScheme;
-import io.restassured.authentication.PreemptiveOAuth2HeaderScheme;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -28,17 +25,13 @@ public class Addresses {
     private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
-    private String uri = API.baseUri + "addresses";
-    private String bearer = API.bearer.replace("token: ","");
+    private final String uri = API.baseUri + "/addresses";
 
     @Given("^I setup GET for address$")
     public void iSetupGETForAddress() throws Throwable {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri);
         builder.setContentType(ContentType.JSON);
-        PreemptiveOAuth2HeaderScheme authenticationScheme = new PreemptiveOAuth2HeaderScheme();
-        authenticationScheme.setAccessToken(bearer);
-        builder.setAuth(authenticationScheme);
         builder.setRelaxedHTTPSValidation();
     }
 
@@ -95,16 +88,20 @@ public class Addresses {
     @Then("^the address search results should contain these UPRNs at positions$")
     public void the_address_search_results_should_contain_these_uprns_at_positions(DataTable dataTable) throws Throwable {
         JsonPath jsonPath = response.getBody().jsonPath();
-        List<Map<String, String>> uprns =  dataTable.asMaps(String.class, String.class);
-        for (int uprn = 0; uprn < uprns.size(); uprn++) {
-            // find numAddresses in results then assert that numAddresses >= uprn or will get null error
-            API api = new API();
-            sleep(1000);
-            assertThat(api.numAddresses(response), Matchers.greaterThan(0));
-            assertThat(api.numAddresses(response), Matchers.greaterThan(uprn));
-            String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);
-            assertThat(jsonPath.get(response_address_uprn), Matchers.<Object>equalTo(uprns.get(uprn).get("uprn")));
+
+        List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+        List<String> expectedUprns = new java.util.ArrayList<>();
+        for (Map<String, String> row : rows) {
+            expectedUprns.add(row.get("uprn")); // preserves DataTable row order
         }
+
+        List<String> actualUprns = jsonPath.getList("response.addresses.uprn", String.class);
+
+        assertThat(actualUprns, Matchers.notNullValue());
+        assertThat(actualUprns.size(), Matchers.greaterThanOrEqualTo(expectedUprns.size()));
+
+        // Compare by position: first expected.size() items must match exactly in order
+        assertThat(actualUprns.subList(0, expectedUprns.size()), Matchers.equalTo(expectedUprns));
     }
 
     @Then("^I should be able to see the address$")
@@ -141,8 +138,8 @@ public class Addresses {
             String classificationPath = String.format("response.addresses[%d].classificationCode", nAddress);
             String classificationCode = response.getBody().jsonPath().get(classificationPath).toString();
 
-            for (int nCode = 0; nCode < codes.size(); nCode++) {
-                if (classificationCode.contentEquals(codes.get(nCode)))
+            for (String code : codes) {
+                if (classificationCode.contentEquals(code))
                     return true;
             }
         }
