@@ -1,20 +1,16 @@
 # ai-acceptance-tests
 
-Developers site for Address Index API
+Acceptance Tests for Address Index API
 
 ## Running Locally in an IDE
 
-* Add JWT token value to API.java then run the class RunCumberTest
+* You need a locally running instance of the Address Index API to run the tests against. You can run this locally by running the [API project](https://github.com/ONSdigital/aims-api) in your IDE.
 
 ## Running Through Docker
 
-Command line
+You need a locally running instance of the Address Index API to run the tests against. Try the [AIMS DIY](https://github.com/ONSdigital/aims-diy) project.
+> **NOTE** Some tests may fail without the full version of AddressBase Premium.
 
-* Add the JWT token value to the Dockerfile
-* Build and execute an image with  `docker build -t ai-acceptance-tests:latest .`
-
-
-Concourse
-
-* Ensure the pipeline has the JWT token supplied as a secret
-* Excute the pipeline which will build and run the docker image
+Build and execute an image with:
+* `docker build -t ai-acceptance-tests .`
+* `docker run --rm -e API_URL="https://your-api-host" ai-acceptance-tests`
