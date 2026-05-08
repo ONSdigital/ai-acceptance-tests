@@ -88,16 +88,20 @@ public class Addresses {
     @Then("^the address search results should contain these UPRNs at positions$")
     public void the_address_search_results_should_contain_these_uprns_at_positions(DataTable dataTable) throws Throwable {
         JsonPath jsonPath = response.getBody().jsonPath();
-        List<Map<String, String>> uprns =  dataTable.asMaps(String.class, String.class);
-        for (int uprn = 0; uprn < uprns.size(); uprn++) {
-            // find numAddresses in results then assert that numAddresses >= uprn or will get null error
-            API api = new API();
-            sleep(1000);
-            assertThat(api.numAddresses(response), Matchers.greaterThan(0));
-            assertThat(api.numAddresses(response), Matchers.greaterThan(uprn));
-            String response_address_uprn = String.format("response.addresses.uprn[%d]", uprn);
-            assertThat(jsonPath.get(response_address_uprn), Matchers.<Object>equalTo(uprns.get(uprn).get("uprn")));
+
+        List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+        List<String> expectedUprns = new java.util.ArrayList<>();
+        for (Map<String, String> row : rows) {
+            expectedUprns.add(row.get("uprn")); // preserves DataTable row order
         }
+
+        List<String> actualUprns = jsonPath.getList("response.addresses.uprn", String.class);
+
+        assertThat(actualUprns, Matchers.notNullValue());
+        assertThat(actualUprns.size(), Matchers.greaterThanOrEqualTo(expectedUprns.size()));
+
+        // Compare by position: first expected.size() items must match exactly in order
+        assertThat(actualUprns.subList(0, expectedUprns.size()), Matchers.equalTo(expectedUprns));
     }
 
     @Then("^I should be able to see the address$")
