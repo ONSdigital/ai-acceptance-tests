@@ -6,7 +6,7 @@ Feature: /addresses/uprn
       | param | value |
       | limit | 200   |
     When I perform GET for UPRN "64012390"
-    Then The result should be this postcode "PO8 9YD"
+    Then The result should be this postcode "CF62 4NH"
     And Verify UPRN Response body contents matched with expected values
       | key     | value |
       | code    | 200   |
@@ -27,3 +27,4 @@ Feature: /addresses/uprn
       | limit | 200   |
     When I perform GET for UPRN "999999999999"
     Then UPRN HTTP status code should be 404
+

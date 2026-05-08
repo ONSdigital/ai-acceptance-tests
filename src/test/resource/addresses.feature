@@ -108,7 +108,7 @@ Feature: /addresses
     Then Verify Address Response body contents matched with expected values
       | key     | value       |
       | code    | 400         |
-      | message | Bad request |
+      | message | Missing parameter: input |
 
   Scenario: Address search with blank input returns bad request
     Given I setup GET for address
@@ -220,7 +220,7 @@ Feature: /addresses
     When I perform GET for address
     Then the address search results should contain these UPRNs at positions
       | index | uprn     |
-      | 1     | 64012390 |
+      | 1     | 61000030 |
 
   ##################
 

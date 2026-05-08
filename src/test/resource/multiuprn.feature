@@ -7,7 +7,7 @@ Feature: /addresses/multiuprn
       | historical | false |
     And I set request body to:
       """
-      {"uprns":[64012390,64012391]}
+      {"uprns":["64012390","64012391"]}
       """
     When I perform POST request
     Then HTTP status code should be 200
@@ -22,3 +22,4 @@ Feature: /addresses/multiuprn
       """
     When I perform POST request
     Then HTTP status code should be 400
+
