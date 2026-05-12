@@ -118,7 +118,7 @@ Feature: /bulk-full
     When I perform POST request
     Then HTTP status code should be 200
     And response body should not be empty
-    And response body should contain "addresses"
+    And response body should contain "bulkAddresses"
 
   Scenario: Bulk full search with blank address input returns handled response
     Given I setup POST for API path "/bulk-full"
