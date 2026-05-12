@@ -33,6 +33,8 @@ Feature: /addresses/multiuprn
       """
     When I perform POST request
     Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "addresses"
     And response body should contain "64012390"
 
   Scenario: Multi UPRN search with empty uprns array returns success
@@ -43,6 +45,8 @@ Feature: /addresses/multiuprn
       """
     When I perform POST request
     Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "addresses"
 
   Scenario: Multi UPRN search with missing uprns field returns bad request
     Given I setup POST for API path "/addresses/multiuprn"
@@ -72,6 +76,8 @@ Feature: /addresses/multiuprn
       """
     When I perform POST request
     Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "addresses"
     And response body should contain "64012390"
 
   Scenario: Multi UPRN search with non-string UPRN values returns bad request
@@ -95,6 +101,8 @@ Feature: /addresses/multiuprn
       """
     When I perform POST request
     Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "addresses"
 
   Scenario: Multi UPRN search with pafdefault true
     Given I setup POST for API path "/addresses/multiuprn"
@@ -107,6 +115,8 @@ Feature: /addresses/multiuprn
       """
     When I perform POST request
     Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "addresses"
 
   Scenario: Multi UPRN search with invalid epoch returns bad request
     Given I setup POST for API path "/addresses/multiuprn"
@@ -173,6 +183,7 @@ Feature: /addresses/multiuprn
     When I perform POST request
     Then HTTP status code should be 200
     And response body should not be empty
+    And response body should contain "addresses"
 
   Scenario: Multi UPRN search with historical query as invalid text defaults to false and returns success
     Given I setup POST for API path "/addresses/multiuprn"

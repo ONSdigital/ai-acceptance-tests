@@ -118,6 +118,69 @@ Feature: /bulk-full
     When I perform POST request
     Then HTTP status code should be 200
     And response body should not be empty
+    And response body should contain "addresses"
+
+  Scenario: Bulk full search with blank address input returns handled response
+    Given I setup POST for API path "/bulk-full"
+    And I set request body to:
+      """
+      {"addresses":[{"id":"1","address":""}]}
+      """
+    When I perform POST request
+    Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "bulkAddresses"
+
+  Scenario: Bulk full search with duplicate addresses returns handled response
+    Given I setup POST for API path "/bulk-full"
+    And I set request body to:
+      """
+      {"addresses":[{"id":"1","address":"PO8 9YD"},{"id":"2","address":"PO8 9YD"}]}
+      """
+    When I perform POST request
+    Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "bulkAddresses"
+
+  Scenario: Bulk full search with mixed valid blank and nonsense addresses returns handled response
+    Given I setup POST for API path "/bulk-full"
+    And I set request body to:
+      """
+      {"addresses":[{"id":"1","address":"PO8 9YD"},{"id":"2","address":""},{"id":"3","address":"zzzzzz not an address"}]}
+      """
+    When I perform POST request
+    Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "bulkAddresses"
+
+  Scenario: Bulk full search with matchthreshold zero returns bad request
+    Given I setup POST for API path "/bulk-full"
+    And I set query parameters
+      | param          | value |
+      | matchthreshold | 0     |
+    And I set request body to:
+      """
+      {"addresses":[{"id":"1","address":"1 Wagtail Road"}]}
+      """
+    When I perform POST request
+    Then HTTP status code should be 400
+    And response json path "status.code" should be 400
+    And response body should contain "status"
+    And response json path "errors[0].message" should be "MatchThreshold parameter must be greater than 0 and less than or equal to 100"
+
+  Scenario: Bulk full search with matchthreshold one hundred returns handled response
+    Given I setup POST for API path "/bulk-full"
+    And I set query parameters
+      | param          | value |
+      | matchthreshold | 100   |
+    And I set request body to:
+      """
+      {"addresses":[{"id":"1","address":"1 Wagtail Road"}]}
+      """
+    When I perform POST request
+    Then HTTP status code should be 200
+    And response body should not be empty
+    And response body should contain "bulkAddresses"
 
 
 

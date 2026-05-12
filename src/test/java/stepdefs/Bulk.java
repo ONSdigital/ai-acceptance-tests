@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 public class Bulk {
 
@@ -25,6 +26,7 @@ public class Bulk {
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private final String uri_bulk = API.bulkUri + "/bulk";
+    private String requestBodyFixturePath = "src/test/resources/bulktest.json";
 
 
     @Given("^I setup POST for bulk addresses$")
@@ -45,12 +47,22 @@ public class Bulk {
         spec = given().spec(requestSpec);
     }
 
+    @And("^I use bulk request body fixture \"([^\"]*)\"$")
+    public void iUseBulkRequestBodyFixture(String fixtureFileName) {
+        requestBodyFixturePath = "src/test/resources/" + fixtureFileName;
+    }
+
     @When("^I perform POST for bulk addresses$")
     public void iPerformPostForBulkAddress() throws Throwable {
-        File jsonDataInFile = new File("src/test/resources/bulktest.json");
+        File jsonDataInFile = new File(requestBodyFixturePath);
         spec.body(jsonDataInFile);
         spec.contentType("application/json");
         response = spec.post();
+    }
+
+    @And("^The bulk response status code should be (\\d+)$")
+    public void theBulkResponseStatusCodeShouldBe(int expectedStatusCode) {
+        assertThat(response.statusCode(), equalTo(expectedStatusCode));
     }
 
     @Then("^The bulk response should return in (\\d+) milliseconds$")

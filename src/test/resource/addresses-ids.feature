@@ -10,6 +10,36 @@ Feature: /addresses/ids
     Then HTTP status code should be 200
     And response body should not be empty
 
+  Scenario: Address ids search with whitespace padded input returns handled response
+    Given I setup GET for API path "/addresses/ids"
+    And I set query parameters
+      | param | value                 |
+      | input |   Wagtail Road        |
+      | limit | 10                    |
+    When I perform GET request
+    Then HTTP status code should be 200
+    And response body should not be empty
+
+  Scenario: Address ids search with repeated terms in input returns handled response
+    Given I setup GET for API path "/addresses/ids"
+    And I set query parameters
+      | param | value                        |
+      | input | Wagtail Road Wagtail Road    |
+      | limit | 10                           |
+    When I perform GET request
+    Then HTTP status code should be 200
+    And response body should not be empty
+
+  Scenario: Address ids search with mixed valid and nonsense input returns handled response
+    Given I setup GET for API path "/addresses/ids"
+    And I set query parameters
+      | param | value                                  |
+      | input | Wagtail Road zzzzzz-not-an-address      |
+      | limit | 10                                     |
+    When I perform GET request
+    Then HTTP status code should be 200
+    And response body should not be empty
+
   Scenario: Address ids search without input returns bad request
     Given I setup GET for API path "/addresses/ids"
     And I set query parameters
@@ -107,4 +137,4 @@ Feature: /addresses/ids
     When I perform GET request
     Then HTTP status code should be 400
     And response json path "status.code" should be 400
-    And response json path "errors[0].message" should be "Offset parameter is too large"
+    And response json path "errors[0].message" should be "Offset parameter is too large, maximum = 5000"
