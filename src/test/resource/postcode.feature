@@ -236,3 +236,95 @@ Feature: addresses/postcode
       | sboost | 1     |
     When the user performs GET for postcode "PO8 9YD"
     Then there should be 38 addresses
+
+  Scenario: Postcode search pagination with offset zero
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | 1     |
+      | offset | 0     |
+    When the user performs GET for postcode "PO8 9YD"
+    Then there should be 1 addresses
+    And Verify postcode response status
+      | key     | value |
+      | code    | 200   |
+      | message | Ok    |
+
+  Scenario: Postcode search pagination with non zero offset
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | 1     |
+      | offset | 1     |
+    When the user performs GET for postcode "PO8 9YD"
+    Then there should be 1 addresses
+    And Verify postcode response status
+      | key     | value |
+      | code    | 200   |
+      | message | Ok    |
+
+  Scenario: Postcode search pagination with large offset returns no addresses
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | 10    |
+      | offset | 1000  |
+    When the user performs GET for postcode "PO8 9YD"
+    Then there should be 0 addresses
+    And Verify postcode response status
+      | key     | value |
+      | code    | 200   |
+      | message | Ok    |
+
+  Scenario: Postcode search with non numeric offset returns bad request
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | 10    |
+      | offset | abc   |
+    When the user performs GET for postcode "PO8 9YD"
+    And Verify postcode response status
+      | key     | value       |
+      | code    | 400         |
+      | message | Bad request |
+
+  Scenario: Postcode search with negative offset returns bad request
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | 10    |
+      | offset | -1    |
+    When the user performs GET for postcode "PO8 9YD"
+    And Verify postcode response status
+      | key     | value       |
+      | code    | 400         |
+      | message | Bad request |
+
+  Scenario: Postcode search with non numeric limit returns bad request
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | abc   |
+      | offset | 0     |
+    When the user performs GET for postcode "PO8 9YD"
+    And Verify postcode response status
+      | key     | value       |
+      | code    | 400         |
+      | message | Bad request |
+
+  Scenario: Postcode search with negative limit returns bad request
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | -1    |
+      | offset | 0     |
+    When the user performs GET for postcode "PO8 9YD"
+    And Verify postcode response status
+      | key     | value       |
+      | code    | 400         |
+      | message | Bad request |
+
+  Scenario: Postcode search with invalid limit and offset returns bad request
+    Given the user defines GET for postcode with these parameters
+      | param  | value |
+      | limit  | abc   |
+      | offset | -1    |
+    When the user performs GET for postcode "PO8 9YD"
+    And Verify postcode response status
+      | key     | value       |
+      | code    | 400         |
+      | message | Bad request |
+

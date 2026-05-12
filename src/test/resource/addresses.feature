@@ -222,5 +222,101 @@ Feature: /addresses
       | index | uprn     |
       | 1     | 61000030 |
 
+  Scenario: Address search pagination with offset zero
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param  | value        |
+      | input  | Wagtail Road |
+      | limit  | 10           |
+      | offset | 0            |
+    When I perform GET request
+    Then HTTP status code should be 200
+    And response body should contain "addresses"
+
+  Scenario: Address search pagination with non zero offset
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param  | value        |
+      | input  | Wagtail Road |
+      | limit  | 10           |
+      | offset | 10           |
+    When I perform GET request
+    Then HTTP status code should be 200
+    And response body should contain "addresses"
+
+  Scenario: Address search with non numeric offset returns bad request
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param  | value        |
+      | input  | Wagtail Road |
+      | limit  | 10           |
+      | offset | abc          |
+    When I perform GET request
+    Then HTTP status code should be 400
+    And response body should contain "status"
+
+  Scenario: Address search with negative offset returns bad request
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param  | value        |
+      | input  | Wagtail Road |
+      | limit  | 10           |
+      | offset | -1           |
+    When I perform GET request
+    Then HTTP status code should be 400
+    And response body should contain "status"
+
+  Scenario: Address geospatial search with valid coordinates
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param   | value        |
+      | input   | Wagtail Road |
+      | limit   | 10           |
+      | lat     | 51.51279     |
+      | lon     | -0.09184     |
+      | rangekm | 10           |
+    When I perform GET request
+    Then HTTP status code should be 200
+    And response body should contain "addresses"
+
+  Scenario: Address geospatial search with non numeric latitude returns bad request
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param   | value        |
+      | input   | Wagtail Road |
+      | limit   | 10           |
+      | lat     | not-a-number |
+      | lon     | -0.09184     |
+      | rangekm | 10           |
+    When I perform GET request
+    Then HTTP status code should be 400
+    And response body should contain "status"
+
+  Scenario: Address geospatial search with non numeric longitude returns bad request
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param   | value        |
+      | input   | Wagtail Road |
+      | limit   | 10           |
+      | lat     | 51.51279     |
+      | lon     | not-a-number |
+      | rangekm | 10           |
+    When I perform GET request
+    Then HTTP status code should be 400
+    And response body should contain "status"
+
+  Scenario: Address geospatial search with non numeric range returns bad request
+    Given I setup GET for API path "/addresses"
+    And I set query parameters
+      | param   | value        |
+      | input   | Wagtail Road |
+      | limit   | 10           |
+      | lat     | 51.51279     |
+      | lon     | -0.09184     |
+      | rangekm | abc          |
+    When I perform GET request
+    Then HTTP status code should be 400
+    And response body should contain "status"
+
   ##################
 
