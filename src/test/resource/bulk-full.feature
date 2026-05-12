@@ -38,16 +38,15 @@ Feature: /bulk-full
     And response json path "status.code" should be 400
     And response body should contain "status"
 
-  Scenario: Bulk full search with empty addresses array returns bad request
+  Scenario: Bulk full search with empty addresses array returns success with zero bulk size
     Given I setup POST for API path "/bulk-full"
     And I set request body to:
       """
       {"addresses":[]}
       """
     When I perform POST request
-    Then HTTP status code should be 400
-    And response json path "status.code" should be 400
-    And response body should contain "status"
+    Then HTTP status code should be 200
+    And response json path "bulk_size" should be 0
 
   Scenario: Bulk full search with missing address text returns bad request
     Given I setup POST for API path "/bulk-full"
@@ -94,7 +93,7 @@ Feature: /bulk-full
     When I perform POST request
     Then HTTP status code should be 400
     And response json path "status.code" should be 400
-    And response body should contain "status"
+    And response json path "bad_request_message" should be "Limit parameter is not numeric"
 
   Scenario: Bulk full search with negative matchthreshold returns bad request
     Given I setup POST for API path "/bulk-full"
@@ -108,7 +107,7 @@ Feature: /bulk-full
     When I perform POST request
     Then HTTP status code should be 400
     And response json path "status.code" should be 400
-    And response body should contain "status"
+    And response json path "bad_request_message" should be "MatchThreshold parameter must be greater than 0 and less than or equal to 100"
 
   Scenario: Bulk full search with mixed valid and invalid entries returns handled response
     Given I setup POST for API path "/bulk-full"

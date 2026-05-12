@@ -105,5 +105,5 @@ Feature: /addresses/ids
       | limit  | 10           |
       | offset | 99999        |
     When I perform GET request
-    Then HTTP status code should be 200
-    And response body should not be empty
+    Then HTTP status code should be 400
+    And response json path "bad_request_message" should be "Offset parameter is too large"
