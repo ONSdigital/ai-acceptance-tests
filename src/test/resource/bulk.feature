@@ -12,15 +12,19 @@ Feature: /addresses/bulk
     And The bulk response status code should be 200
     Then The bulk response should return in 340000 milliseconds
 
-  Scenario: bulk addresses search with alternate fixture
-    Given I setup POST for bulk addresses
-    And I use bulk request body fixture "bulktest2.json"
-    And I set parameters for bulk addresses search
+  Scenario: bulk addresses search with alternate compact payload
+    Given I setup POST for API path "/bulk"
+    And I set query parameters
       | param           | value |
       | historical      | false |
       | limitperaddress | 1     |
-    When I perform POST for bulk addresses
-    Then The bulk response status code should be 200
+    And I set request body to:
+      """
+      {"addresses": [{"id": "1", "address": "1 Wagtail Road"}, {"id": "2", "address": "PO8 9YD"}]}
+      """
+    When I perform POST request
+    Then HTTP status code should be 200
+    And response body should not be empty
 
   Scenario: bulk addresses search with compact inline payload
     Given I setup POST for API path "/bulk"
