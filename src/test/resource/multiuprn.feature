@@ -174,7 +174,7 @@ Feature: /addresses/multiuprn
     Then HTTP status code should be 200
     And response body should not be empty
 
-  Scenario: Multi UPRN search with historical query as invalid text updates value to false and returns success
+  Scenario: Multi UPRN search with historical query as invalid text defaults to false and returns success
     Given I setup POST for API path "/addresses/multiuprn"
     And I set query parameters
       | param      | value |
@@ -185,9 +185,8 @@ Feature: /addresses/multiuprn
       """
     When I perform POST request
     Then HTTP status code should be 200
-    And response json path "status.code" should be 200
-    And response body should contain "status"
-    And response json path "historical" should be "false"
+    And response body should contain "64012390"
+    And response json path "response.historical" should be "false"
 
   Scenario: Multi UPRN search with very long UPRN string returns bad request
     Given I setup POST for API path "/addresses/multiuprn"
@@ -199,3 +198,5 @@ Feature: /addresses/multiuprn
     Then HTTP status code should be 400
     And response json path "status.code" should be 400
     And response body should contain "status"
+    And response body should contain "errors"
+    And response json path "errors[0].message" should be "UPRNs must be numeric. They can have up to 12 digits and have no leading zeroes."
