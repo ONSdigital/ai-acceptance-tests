@@ -66,6 +66,7 @@ Feature: /addresses/partial
       | limit | 10    |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
 
   Scenario: Partial address search with blank input returns bad request
     Given I setup GET for API path "/addresses/partial"
@@ -75,6 +76,7 @@ Feature: /addresses/partial
       | limit | 10    |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
 
   Scenario: Partial address search with non numeric limit returns bad request
     Given I setup GET for API path "/addresses/partial"
@@ -84,6 +86,7 @@ Feature: /addresses/partial
       | limit | abc     |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
 
   Scenario: Partial address search with negative limit returns bad request
     Given I setup GET for API path "/addresses/partial"
@@ -93,6 +96,7 @@ Feature: /addresses/partial
       | limit | -1      |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
 
   Scenario: Partial address search with invalid epoch returns bad request
     Given I setup GET for API path "/addresses/partial"
@@ -103,3 +107,5 @@ Feature: /addresses/partial
       | epoch | invalid123 |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
+

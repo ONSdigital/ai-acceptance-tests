@@ -101,6 +101,20 @@ public class ExtraApi {
     public void responseBodyShouldNotBeEmpty() {
         assertThat(response.getBody().asString(), not(emptyString()));
     }
+
+    @And("^response json path \"([^\"]*)\" should be (\\d+)$")
+    public void responseJsonPathShouldBeNumber(String jsonPath, int expectedValue) {
+        Integer actualValue = response.getBody().jsonPath().getInt(jsonPath);
+        assertThat(actualValue, equalTo(expectedValue));
+    }
+
+    @And("^response json path \"([^\"]*)\" should be \"([^\"]*)\"$")
+    public void responseJsonPathShouldBeString(String jsonPath, String expectedValue) {
+        String actualValue = response.getBody().jsonPath().getString(jsonPath);
+        assertThat(actualValue, equalTo(expectedValue));
+    }
 }
+
+
 
 

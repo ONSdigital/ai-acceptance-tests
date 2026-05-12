@@ -253,6 +253,7 @@ Feature: /addresses
       | offset | abc          |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
     And response body should contain "status"
 
   Scenario: Address search with negative offset returns bad request
@@ -264,6 +265,7 @@ Feature: /addresses
       | offset | -1           |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
     And response body should contain "status"
 
   Scenario: Address geospatial search with valid coordinates
@@ -290,6 +292,7 @@ Feature: /addresses
       | rangekm | 10           |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
     And response body should contain "status"
 
   Scenario: Address geospatial search with non numeric longitude returns bad request
@@ -303,6 +306,7 @@ Feature: /addresses
       | rangekm | 10           |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
     And response body should contain "status"
 
   Scenario: Address geospatial search with non numeric range returns bad request
@@ -316,6 +320,7 @@ Feature: /addresses
       | rangekm | abc          |
     When I perform GET request
     Then HTTP status code should be 400
+    And response json path "status.code" should be 400
     And response body should contain "status"
 
   ##################
