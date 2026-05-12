@@ -9,7 +9,7 @@ Feature: /bulk-full
       | matchthreshold  | 10    |
     And I set request body to:
       """
-      [{"id":"1","address":"1 Wagtail Road"}]
+      {"addresses": [{"id":"1","address":"1 Wagtail Road"}]}
       """
     When I perform POST request
     Then The bulk response should return in 340000 milliseconds
