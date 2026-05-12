@@ -12,7 +12,8 @@ Feature: /bulk-full
       [{"id":"1","address":"1 Wagtail Road"}]
       """
     When I perform POST request
-    Then HTTP status code should be 200
+    Then The bulk response should return in 340000 milliseconds
+    And HTTP status code should be 200
     And response body should not be empty
 
   Scenario: Bulk full search with malformed JSON returns bad request

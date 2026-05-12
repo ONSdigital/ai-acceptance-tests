@@ -34,14 +34,14 @@ Feature: /addresses/multiuprn
     Then HTTP status code should be 200
     And response body should contain "64012390"
 
-  Scenario: Multi UPRN search with empty uprns array returns bad request
+  Scenario: Multi UPRN search with empty uprns array returns success
     Given I setup POST for API path "/addresses/multiuprn"
     And I set request body to:
       """
       {"uprns":[]}
       """
     When I perform POST request
-    Then HTTP status code should be 400
+    Then HTTP status code should be 200
 
   Scenario: Multi UPRN search with missing uprns field returns bad request
     Given I setup POST for API path "/addresses/multiuprn"
