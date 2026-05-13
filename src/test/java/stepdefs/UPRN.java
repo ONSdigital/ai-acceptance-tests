@@ -10,6 +10,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matchers;
 
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class UPRN {
     private final String uri_uprn = API.baseUri + "/addresses/uprn";
 
     @Given("^I setup GET for UPRN$")
-    public void i_setup_GET() throws Throwable {
+    public void i_setup_GET() {
         builder = new RequestSpecBuilder();
         builder.setBaseUri(uri_uprn);
         builder.setContentType(ContentType.JSON);
@@ -44,13 +45,27 @@ public class UPRN {
     }
 
     @When("^I perform GET for UPRN \"([^\"]*)\"$")
-    public void iPerformGETForUPRN(String uprn) throws Throwable {
+    public void iPerformGETForUPRN(String uprn) {
         response = spec.get(uprn);
     }
 
     @Then("^The result should be this postcode \"([^\"]*)\"$")
-    public void the_result_should_be_this_postcode(String arg1) throws Exception {
-        // Write code here that turns the phrase above into concrete actions
+    public void the_result_should_be_this_postcode(String expectedPostcode) {
+        String postcode = response.getBody().jsonPath().getString("response.address.postcode");
+        if (postcode == null) {
+            postcode = response.getBody().jsonPath().getString("response.addresses[0].postcode");
+        }
+
+        if (postcode != null) {
+            assertThat(postcode, equalTo(expectedPostcode));
+            return;
+        }
+
+        String formatted = response.getBody().jsonPath().getString("response.address.formattedAddress");
+        if (formatted == null) {
+            formatted = response.getBody().jsonPath().getString("response.addresses[0].formattedAddress");
+        }
+        assertThat(formatted, Matchers.containsString(expectedPostcode));
     }
 
     @And("^Verify UPRN Response body contents matched with expected values$")
@@ -58,5 +73,10 @@ public class UPRN {
         List<List<String>> raw = table.raw();
         assertThat((response.getBody().jsonPath().get("status.code")).toString(), equalTo(raw.get(1).get(1)));
         assertThat((response.getBody().jsonPath().get("status.message")).toString(), equalTo(raw.get(2).get(1)));
+    }
+
+    @Then("^UPRN HTTP status code should be (\\d+)$")
+    public void uprnHttpStatusCodeShouldBe(int expectedStatusCode) {
+        assertThat(response.statusCode(), equalTo(expectedStatusCode));
     }
 }
