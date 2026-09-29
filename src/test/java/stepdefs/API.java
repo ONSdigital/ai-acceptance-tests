@@ -1,6 +1,6 @@
 package stepdefs;
 
-import cucumber.api.DataTable;
+import io.cucumber.datatable.DataTable;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;

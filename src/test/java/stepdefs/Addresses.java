@@ -1,10 +1,10 @@
 package stepdefs;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.Thread.sleep;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -52,7 +51,6 @@ public class Addresses {
 
     @Then("^The first address should contain \"([^\"]*)\"$")
     public void the_first_address_should_contain(String address) throws Throwable {
-        JsonPath path = response.getBody().jsonPath();
         String address_result = response.getBody().jsonPath().get("response.addresses[0].formattedAddress");
         assertThat(address_result, Matchers.containsString(address));
     }
@@ -117,23 +115,18 @@ public class Addresses {
         // For automatic transformation, change DataTable to one of
         // List<YourType>, List<List<E>>, List<Map<K,V>> or Map<K,V>.
         // E,K,V must be a scalar (String, Integer, Date, enum etc)
-
     }
 
-    // TODO: base class
     @And("^Verify Address Response body contents matched with expected values$")
     public void verifyAddressResponseBodyContentsMatchedWithExpectedValues(DataTable table) throws Throwable {
-        List<List<String>> raw = table.raw();
+        List<List<String>> raw = table.asLists();
         assertThat((response.getBody().jsonPath().get("status.code")).toString(), equalTo(raw.get(1).get(1)));
         assertThat((response.getBody().jsonPath().get("status.message")).toString(), equalTo(raw.get(2).get(1)));
     }
 
     public boolean classificationCodeFound(DataTable classification_codes) {
         List<String> codes =  classification_codes.asList(String.class);
-        int limit = Integer.parseInt(response.getBody().jsonPath().get("response.limit").toString());
-        int total = Integer.parseInt(response.getBody().jsonPath().get("response.total").toString());
         API api = new API();
-        boolean found = false;
         for (int nAddress = 0; nAddress < api.numAddresses(response); nAddress++) {
             String classificationPath = String.format("response.addresses[%d].classificationCode", nAddress);
             String classificationCode = response.getBody().jsonPath().get(classificationPath).toString();
