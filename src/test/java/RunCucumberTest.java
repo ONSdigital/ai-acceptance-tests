@@ -1,10 +1,9 @@
-import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import org.junit.runner.RunWith;
+import org.junit.platform.suite.api.IncludeEngines;
+import org.junit.platform.suite.api.SelectDirectories;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Cucumber.class)
-@CucumberOptions(
-        features = {"src/test/resource"}
-)
+@Suite
+@IncludeEngines("cucumber")
+@SelectDirectories("src/test/resource")
 public class RunCucumberTest {
 }

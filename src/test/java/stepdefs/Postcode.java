@@ -1,9 +1,9 @@
 package stepdefs;
-import cucumber.api.DataTable;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
-import cucumber.api.java.en.Then;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -82,7 +82,7 @@ public class Postcode {
 
     @And("^Verify postcode response status$")
     public void verify_postcode_response_status(DataTable table) {
-        List<List<String>> raw = table.raw();
+        List<List<String>> raw = table.asLists();
         assertThat((response.getBody().jsonPath().get("status.code")).toString(), equalTo(raw.get(1).get(1)));
         assertThat((response.getBody().jsonPath().get("status.message")).toString(), equalTo(raw.get(2).get(1)));
     }

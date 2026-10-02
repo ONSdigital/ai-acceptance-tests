@@ -1,14 +1,14 @@
 package stepdefs;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 
 import static java.lang.Thread.sleep;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.When;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

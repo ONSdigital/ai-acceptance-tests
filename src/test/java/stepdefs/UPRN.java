@@ -1,10 +1,10 @@
 package stepdefs;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -21,7 +21,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class UPRN {
 
-    private ResponseOptions<Response> response; // TODO: base class
+    private ResponseOptions<Response> response;
     private RequestSpecification spec;
     RequestSpecBuilder builder;
     private final String uri_uprn = API.baseUri + "/addresses/uprn";
@@ -70,7 +70,7 @@ public class UPRN {
 
     @And("^Verify UPRN Response body contents matched with expected values$")
     public void verifyUPRNResponseBodyContentsMatchedWithExpectedValues(DataTable table) {
-        List<List<String>> raw = table.raw();
+        List<List<String>> raw = table.asLists();
         assertThat((response.getBody().jsonPath().get("status.code")).toString(), equalTo(raw.get(1).get(1)));
         assertThat((response.getBody().jsonPath().get("status.message")).toString(), equalTo(raw.get(2).get(1)));
     }
